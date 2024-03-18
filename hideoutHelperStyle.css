@@ -22,7 +22,7 @@ div.hideoutModules{
 div.hideoutModules div{
     width: 23.62%;
     float: left;
-    
+    padding-bottom: 15px;
 }
 
 h4.helperMessage{
@@ -45,5 +45,8 @@ div.hideoutSlot{
     margin: 10px;
 }
 
+hr.hrTag{
+    width:50%;
+}
 
 
