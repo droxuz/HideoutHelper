@@ -39,7 +39,7 @@ h4.helperMessage{
 
 div.hideoutSlot{
     background-color: #101310;
-    color: antiquewhite;
+    color: rgb(246, 248, 247);
     border: solid;
     border-color: aliceblue;
     border-radius: 10px;
@@ -55,7 +55,7 @@ select.selectStyle{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     border-radius: 5px;
     background-color: #101310;
-    color: antiquewhite;
+    color: rgb(181, 175, 153);
     border-color:#101310;
     border-bottom-color: antiquewhite;
     
