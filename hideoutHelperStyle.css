@@ -5,24 +5,28 @@
     background-color: #101310;
     color: antiquewhite;
     border: solid;
-    border-color: antiquewhite;
+    border-color: rgb(181, 175, 153);
     border-radius: 25px;
     margin-right: 35%;
     margin-left: 35%;
 }
 
 div.hideoutModules{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(24.6%, 1fr));
+    gap: 10px;
     font-size: 25px;
     width: 100%;
     overflow: auto;
     font-family: 'Courier New', Courier, monospace;
     text-align: center;
-    margin: -10px;
+    margin: 0px;
 }
 div.hideoutModules div{
-    width: 23.62%;
+    box-sizing: border-box;
+    padding: 5px;
     float: left;
-    padding-bottom: 15px;
+    padding-bottom: 45px;
 }
 
 h4.helperMessage{
@@ -30,8 +34,10 @@ h4.helperMessage{
     color: antiquewhite;
     font-family: 'Courier New', Courier, monospace;
     background-color: #101310;
-    margin-right: 50%;
+    margin-left: 10px;
+    margin-right: 50.7%;
     border:solid;
+    border-color: rgb(181, 175, 153);
     border-radius: 15px;
     padding: 20px;
     
@@ -55,9 +61,9 @@ select.selectStyle{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     border-radius: 5px;
     background-color: #101310;
-    color: rgb(181, 175, 153);
+    color: antiquewhite;
     border-color:#101310;
-    border-bottom-color: antiquewhite;
+    border-bottom-color: rgb(181, 175, 153);
     
 }
 
@@ -67,5 +73,23 @@ img.imgFloatRight{
     height: 50px;
 }
 
+img.escapeFromtarkovfloatright{
+    float: right;
+    width: 550px;
+    height: 200px;
+}
 
+.footer{
+position: fixed;
+left: 40%;
+right: 0;
+bottom: 0;
+width: 20%;
+border: solid;
+border-radius: 25px;
+border-color: rgb(181, 175, 153);
+background-color: #101310;
+color:  antiquewhite;
+text-align: center;
+}
 
