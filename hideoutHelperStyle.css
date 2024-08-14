@@ -95,8 +95,20 @@ padding: 10px;
 }
 
 button.buttonStyle{
+    padding: 5px;
+    border: solid;
     font-family: 'Courier New', Courier, monospace;
+    border-color: rgb(181, 175, 153);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.3);
+    background-color: #101310;
+    border-radius: 5px;
+    color: rgb(181, 175, 153);
+}
 
+.buttonStyle:hover,
+.buttonStyle:focus{
+    color: red;
+    border-color: red;
 }
 
 .modal {
@@ -118,11 +130,12 @@ button.buttonStyle{
     margin: 15% auto;
     padding: 30px;
     border: 1px solid #888;
-    width: 30%; 
+    width: 70%; 
+    height: 70%;
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
 }
 .close {
-    color: #aaa;
+    color: rgb(181, 175, 153);
     float: right;
     font-size: 28px;
     font-weight: bold;
@@ -130,7 +143,7 @@ button.buttonStyle{
 
 .close:hover,
 .close:focus {
-    color: black;
+    color: red;
     text-decoration: none;
     cursor: pointer;
 }
