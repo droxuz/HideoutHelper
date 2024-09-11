@@ -7,7 +7,7 @@ import { getFirestore} from 'firebase/firestore';
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyBlbZhS3rKY1-fmHDkFkL_frWulpHcb9cE",
+  apiKey: "",
   authDomain: "hideouthelper-a48eb.firebaseapp.com",
   projectId: "hideouthelper-a48eb",
   storageBucket: "hideouthelper-a48eb.appspot.com",
