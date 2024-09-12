@@ -1,0 +1,15 @@
+{
+  "name": "hideouthelper",
+  "version": "1.0.0",
+  "description": "",
+  "main": "hideoutHelper.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Andrew Nong",
+  "license": "ISC",
+  "dependencies": {
+    "firebase": "^10.13.1"
+  }
+}
