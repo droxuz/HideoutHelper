@@ -7,15 +7,7 @@ import { getFirestore} from 'firebase/firestore';
 import { getAuth, onAuthStateChanged} from "firebase/auth";
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyBlbZhS3rKY1-fmHDkFkL_frWulpHcb9cE",
-  authDomain: "hideouthelper-a48eb.firebaseapp.com",
-  projectId: "hideouthelper-a48eb",
-  storageBucket: "hideouthelper-a48eb.appspot.com",
-  messagingSenderId: "418103930961",
-  appId: "1:418103930961:web:9001306eba6dcd858bc870",
-  measurementId: "G-LZMJQ9BHEN"
-};
+
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
