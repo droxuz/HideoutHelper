@@ -1,4 +1,5 @@
 // Import the functions you need from the SDKs you need
+console.log("bugged");
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 // TODO: Add SDKs for Firebase products that you want to use
@@ -15,7 +16,8 @@ const firebaseConfig = {
     messagingSenderId: "1011025758280",
     appId: "1:1011025758280:web:4ecc9b03da3dc2f81b707d",
     measurementId: "G-LV7BW8NQLQ"
-  };
+  }; 
+
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 //Initialize FireStore and Auth
@@ -43,7 +45,6 @@ onAuthStateChanged(auth, user=>{
         console.log("No user");
     }
 });
-
 
 
 // Get modal element

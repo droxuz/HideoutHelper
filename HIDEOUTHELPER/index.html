@@ -4,7 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Welcome to Firebase Hosting</title>
-
+    <link rel="stylesheet" href="hideoutHelperStyle.css">
+    <script type="module" src="hideoutHelper.js"></script>
     <!-- update the version number as needed -->
     <script defer src="/__/firebase/10.13.2/firebase-app-compat.js"></script>
     <!-- include only the Firebase features as you need -->
@@ -23,30 +24,321 @@
     -->
     <script defer src="/__/firebase/init.js?useEmulator=true"></script>
 
-    <style media="screen">
-      body { background: #ECEFF1; color: rgba(0,0,0,0.87); font-family: Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
-      #message { background: white; max-width: 360px; margin: 100px auto 16px; padding: 32px 24px; border-radius: 3px; }
-      #message h2 { color: #ffa100; font-weight: bold; font-size: 16px; margin: 0 0 8px; }
-      #message h1 { font-size: 22px; font-weight: 300; color: rgba(0,0,0,0.6); margin: 0 0 16px;}
-      #message p { line-height: 140%; margin: 16px 0 24px; font-size: 14px; }
-      #message a { display: block; text-align: center; background: #039be5; text-transform: uppercase; text-decoration: none; color: white; padding: 16px; border-radius: 4px; }
-      #message, #message a { box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); }
-      #load { color: rgba(0,0,0,0.4); text-align: center; font-size: 13px; }
-      @media (max-width: 600px) {
-        body, #message { margin-top: 0; background: white; box-shadow: none; }
-        body { border-top: 16px solid #ffa100; }
-      }
-    </style>
   </head>
-  <body>
-    <div id="message">
-      <img src="photos/Air_Filtering_Unit_Portrait.webp" alt="uhm">
-      <h2>Welcome</h2>
-      <h1>Firebase Hosting Setup Complete</h1>
-      <p>You're seeing this because you've successfully setup Firebase Hosting. Now it's time to go build something extraordinary!</p>
-      <a target="_blank" href="https://firebase.google.com/docs/hosting/">Open Hosting Documentation</a>
-    </div>
-    <p id="load">Firebase SDK Loading&hellip;</p>
+  <body style="background-color: #272727;">
+    <div>
+      <img src="photos/pngimg.com - escape_from_tarkov_PNG16.png" alt="EscapeFromTarkovLogo" class="escapeFromtarkovfloatright">
+      <h1 class="hideoutHelper">
+          <strong>
+              Hideout Helper
+          </strong>
+      </h1>
+      <h4 class="helperMessage">
+          <img src="photos/Hideout_icon.webp" alt="HideoutIcon" class="imgFloatRight">
+          Enter what hideout upgrades you have and it will automatically list the amount of items needed to complete the hideout to the max level.  
+      </h4>
+  </div>
+  <!-- First Row -->
+  <div class="flex-container">
+      <div>
+          <h3>Air Filtering Unit</h3>
+          <img src="photos/Air_Filtering_Unit_Portrait.webp" alt="AirFiltering">
+          <hr class="hrTag">
+          <select name="airFilteringUnit" id="airFilteringUnitID" class="selectStyle">
+              <option value="airFilteringNotInstalled">Air Filtering Not Installed</option>
+              <option value="airFilteringOn">Air Filtering Installed</option>
+          </select>   
+      </div>
+  
+      <div>
+          <h3>Bitcoin Farm</h3>
+          <img src="photos/Bitcoin_Farm_Portrait.webp" alt="BitcoinFarm">
+          <hr class="hrTag">
+          <select name="bitcoinFarm" id="bitcoinFarmID" class="selectStyle">
+              <option value="bitcoinFarmNotInstalled">Bitcoin Farm Not Installed</option>
+              <option value="bitcoinFarmOn">Bitcoin Farm Installed</option>
+          </select>
+      </div>
+  
+      <div>
+          <h3>Booze Generator</h3>
+          <img src="photos/Booze_Generator_Portrait.webp" alt="BoozeGenerator">
+          <hr class="hrTag">
+          <select name="boozeGeneratorUnit" id="boozeGeneratorID" class="selectStyle">
+              <option value="boozeGeneratorNotInstalled">Booze Generator Not Installed</option>
+              <option value="boozeGeneratorOn">Booze Generator Installed</option>
+          </select>
+      </div>
+  
+      <div>
+          <h3>Defective Wall</h3>
+          <img src="photos/Defective_Wall_Portrait.webp" alt="DefectiveWall">
+          <hr class="hrTag">
+          <select name="defectiveWall" id="defectiveWallID" class="selectStyle">
+              <option value="defectiveWallNotInstalled">Defective Wall Not Installed</option>
+              <option value="defectiveWall1">Defective Wall 1 Installed</option>
+              <option value="defectiveWall2">Defective Wall 2 Installed</option>
+              <option value="defectiveWall3">Defective Wall 3 Installed</option>
+              <option value="defectiveWall4">Defective Wall 4 Installed</option>
+              <option value="defectiveWall5">Defective Wall 5 Installed</option>
+              <option value="defectiveWall6">Defective Wall 6 Installed</option>
+          </select>
+      </div>
+  
+      <div>
+          <h3>Generator</h3>
+          <img src="photos/Generator_Portrait.webp" alt="Generator">
+          <hr class="hrTag">
+          <select name="generator" id="generatorID" class="selectStyle">
+              <option value="generatorNotInstalled">Generator Not Installed</option>
+              <option value="generator1">Generator 1 Installed</option>
+              <option value="generator2">Generator 2 Installed</option>
+              <option value="generator3">Generator 3 Installed</option>
+          </select>
+      </div>
+  
+      <div>
+          <h3>Gym</h3>
+          <img src="photos/Gym_Portrait.webp" alt="Gym">
+          <hr class="hrTag">
+          <select name="gym" id="gymID" class="selectStyle">
+              <option value="gymNotInstalled">Gym Not Installed</option>
+              <option value="gymOn">Gym Installed</option>
+          </select>
+      </div>
+  
+      <div>
+          <h3>Hall of Fame</h3>
+          <img src="photos/Hall_of_Fame_Portrait.webp" alt="HallOfFamePhoto">
+          <hr class="hrTag">
+          <select name="hallOfFame" id="hallOfFameID" class="selectStyle">
+              <option value="hallOfFameNotInstalled">Hall of Fame Not Installed</option>
+              <option value="hallOfFame1">Hall of Fame 1</option>
+              <option value="hallOfFame2">Hall of Fame 2</option>
+              <option value="hallOfFame3">Hall of Fame 3</option>
+          </select>
+      </div>
+      
+      <div>
+          <h3>Heating</h3>
+          <img src="photos/Heating_Portrait.webp" alt="Heating">
+          <hr class="hrTag">
+          <select name="heating" id="heatingID" class="selectStyle">
+              <option value="heatinNotInstalled">Heating Not Installed</option>
+              <option value="heating1">Heating 1</option>
+              <option value="heating2">Heating 2</option>
+              <option value="heating3">Heating 3</option>
+          </select>
+      </div>
+  
+      <div>
+          <h3>Illumination</h3>
+          <img src="photos/Illumination_Portrait.webp" alt="Illumination">
+          <hr class="hrTag">
+          <select name="illumination" id="illuminationID" class="selectStyle">
+              <option value="illuminationNotInstalled">Illumination Not Installed</option>
+              <option value="illumination1">Illumination 1 </option>
+              <option value="illumination2">Illumination 2 </option>
+              <option value="illumination3">Illumination 3 </option>
+          </select>
+      </div>
+  
+      <div>
+          <h3>Intelligence Center</h3>
+          <img src="photos/Intelligence_Center_Portrait.webp" alt="Intelligence Center">
+          <hr class="hrTag">
+          <select name="intelligenceCenter" id="intelligenceCenterID" class="selectStyle">
+              <option value="intelligenceCenterNotInstalled">Intelligence Center Not Installed</option>
+              <option value="intelligenceCenter1">Intelligence Center 1</option>
+              <option value="intelligenceCenter2">Intelligence Center 2</option>
+              <option value="intelligenceCenter3">Intelligence Center 3</option>
+          </select>
+      </div>
+  
+      <div>
+          <h3>Lavatory</h3>
+          <img src="photos/Lavatory_Portrait.webp" alt="Lavatory">
+          <hr class="hrTag">
+          <select name="lavatory" id="lavatoryID" class="selectStyle">
+              <option value="lavatoryNotInstalled">Lavatory Not Installed</option>
+              <option value="lavatory1">Lavatory 1</option>
+              <option value="lavatory2">Lavatory 2</option>
+              <option value="lavatory3">Lavatory 3</option>
+          </select>
+      </div>
+  
+      <div>
+          <h3>Library</h3>
+          <img src="photos/Library_Portrait.webp" alt="Library">
+          <hr class="hrTag">
+          <select name="library" id="libraryID" class="selectStyle">
+              <option value="libraryNotInstalled">Library Not Installed</option>
+              <option value="libraryInstalled">Library Installed</option>
+          </select>
+      </div>
+  
+      <div>
+          <h3>Medstation</h3>
+          <img src="photos/Medstation_Portrait.webp" alt="Medstation">
+          <hr class="hrTag">
+          <select name="medStation" id="medstationID" class="selectStyle">
+              <option value="medStationNotInstalled">Medstation Not Installed</option>
+              <option value="medStation1">Medstation 1</option>
+              <option value="medStation2">Medstation 2</option>
+              <option value="medStation3">Medstation 3</option>
+          </select>
+      </div>
+      <div>
+          <h3>Nutrition Unit</h3>
+          <img src="photos/Nutrition_Unit_Portrait.webp" alt="Nutrition">
+          <hr class="hrTag">
+          <select name="nutritionUnit" id="nutritionUnitID" class="selectStyle">
+              <option value="nutritionUnitNotInstalled">Nutrition Unit Not Installed</option>
+              <option value="nutritionUnit1">Nutrition Unit 1</option>
+              <option value="nutritionUnit2">Nutrition Unit 2</option>
+              <option value="nutritionUnit3">Nutrition Unit 3</option>
+          </select>
+      </div>
+  
+      <div>
+          <h3>Rest Space</h3>
+          <img src="photos/Rest_Space_Portrait.webp" alt="Rest Space">
+          <hr class="hrTag">
+          <select name="restSpace" id="restSpaceID" class="selectStyle">
+              <option value="restSpaceNotInstalled">Rest Space Not Installed</option>
+              <option value="restSpace1">Rest Space 1</option>
+              <option value="restSpace2">Rest Space 2</option>
+              <option value="restSpace3">Rest Space 3</option>
+          </select>
+      </div>
+  
+      <div>
+          <h3>Scav Case</h3>
+          <img src="photos/Scav_case_Portrait.webp" alt="Scav Case">
+          <hr class="hrTag">
+          <select name="scavCase" id="scavCaseID" class="selectStyle">
+              <option value="scavCaseNotInstalled">Scav Case Not Installed</option>
+              <option value="scavCaseInstalled">Scav Case Installed</option>
+              
+          </select>
+      </div>
+  
+      <div class="hideoutSlot">
+          <h3>Security</h3>
+          <img src="photos/Security_Portrait.webp" alt="Security">
+          <hr class="hrTag">
+          <select name="security" id="securityID" class="selectStyle">
+              <option value="securityNotInstalled">Security Not Installed</option>
+              <option value="security1">Security 1</option>
+              <option value="security2">Security 2</option>
+              <option value="security3">Security 3</option>
+          </select>
+      </div>
+  
+      <div class="hideoutSlot">
+          <h3>Shooting Range</h3>
+          <img src="photos/Shooting_Range_Portrait.webp" alt="Shooting Range">
+          <hr class="hrTag">
+          <select name="shootingRange" id="shootingRangeID" class="selectStyle">
+              <option value="shootinRangeNotInstalled">Shooting Range Not Installed</option>
+              <option value="shootingRange1">Shooting Range 1</option>
+              <option value="shootingRange2">Shooting Range 2</option>
+              <option value="shootingRange3">Shooting Range 3</option>
+          </select>
+      </div>
+  
+      <div class="hideoutSlot">
+          <h3>Solar Power</h3>
+          <img src="photos/Solar_power_Portrait.webp" alt="Solar Power">
+          <hr class="hrTag">
+          <select name="solarPower" id="solarPowerID" class="selectStyle">
+              <option value="solarPowerNotInstalled">Solar Power Not Installed</option>
+              <option value="solarPowerInstalled">Solar Power Installed</option>
+          </select>
+      </div>
+  
+      <div class="hideoutSlot">
+          <h3>Stash</h3>
+          <img src="photos/Stash_Portrait.webp" alt="Stash">
+          <hr class="hrTag">
+          <select name="stash" id="stashID" class="selectStyle">
+              <option value="stash1">Stash 1</option>
+              <option value="stash2">Stash 2</option>
+              <option value="stash3">Stash 3</option>
+              <option value="stash4">Stash 4</option>
+              <option value="stash5">Stash 5</option>
+          </select>
+      </div>
+  
+      <div class="hideoutSlot">
+          <h3>Vents</h3>
+          <img src="photos/Vents_Portrait.webp" alt="Vents">
+          <hr class="hrTag">
+          <select name="vents" id="ventsID" class="selectStyle">
+              <option value="ventNotInstalled">Vents Not Installed</option>
+              <option value="vents1">Vents 1</option>
+              <option value="vents2">Vents 2</option>
+              <option value="vents3">Vents 3</option>
+          </select>       
+      </div>
+  
+      <div class="hideoutSlot">
+          <h3>Water Collector</h3>
+          <img src="photos/Water_Collector_Portrait.webp" alt="Water Collecter">
+          <hr class="hrTag">
+          <select name="waterCollecter" id="waterCollectorID" class="selectStyle">
+              <option value="waterCollectorNotInstalled">Water Collector Not Installed</option>
+              <option value="waterCollector1">Water Collector 1</option>
+              <option value="waterColelctor2">Water Collector 2</option>
+              <option value="waterCollector3">Water Collector 3</option>
+          </select>        
+      </div>
+  
+      <div class="hideoutSlot">
+          <h3>Weapon Rack</h3>
+          <img src="photos/Weapon_Rack_Portrait.webp" alt="Weapon Rack">
+          <hr class="hrTag">
+          <select name="weaponRack" id="weaponRackID" class="selectStyle">
+              <option value="weaponRackNotInstalled">Weapon Rack Not Installed</option>
+              <option value="weaponRack1">Weapon Rack 1</option>
+              <option value="weaponRack2">Weapon Rack 2</option>
+              <option value="weaponRack3">Weapon Rack 3</option>
+          </select>
+      </div>
+      
+      <div class="hideoutSlot">
+          <h3>Workbench</h3>  
+          <img src="photos/Workbench_Portrait.webp" alt="Workbench">
+          <hr class="hrTag">      
+          <select name="workBench" id="workBenchID" class="selectStyle">
+              <option value="workBenchNotInstalled">Work Bench Not Installed</option>
+              <option value="workBench1">Work Bench 1</option>
+              <option value="workBench2">Work Bench 2</option>
+              <option value="workBench3">Work Bench 3</option>
+          </select>
+      </div>
+  </div>
+  <!-- Second Row -->
+  
+  
+  <div class="footer">
+  <button class="buttonStyle" id="openModalBtn">Calculate</button>
+  </div>
+  
+  <div class="modal" id="myModal">
+      <div class="modal-content">
+          <span class="close">&times;</span>
+          <h2 class="partsList">
+              <strong>
+                  PARTS LIST
+              </strong>
+          </h2>
+          <div class="itemList">
+              <ul id="itemUl"></ul>
+          </div>
+      </div>
+  </div>
+  <script src="hideoutHelper.js"></script>
 
     <script>
       document.addEventListener('DOMContentLoaded', function() {
