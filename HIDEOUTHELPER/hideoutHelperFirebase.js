@@ -1,11 +1,10 @@
 // Import the functions you need from the SDKs you need
 
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js";
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-analytics.js";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
-import { getFirestore} from 'firebase/firestore';
-import { getAuth, onAuthStateChanged} from "firebase/auth";
+import {getFirestore, doc, setDoc} from 'https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js';
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional\
 const firebaseConfig = {
@@ -20,30 +19,24 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
-//Initialize FireStore and Auth
-const auth = getAuth(app);
 const db = getFirestore(app);
 
-//Writing and Reading from Firestore
-const random_data = doc(db,'Heating1/21-09-2024');
-function inserting_data(){
+const userRef = doc(db, 'Collection/USERS');
+
+async function writingUsers() {
     const docData = {
-        Screws: 3,
-        Bolts: 5,
-        Duct_tape: 2,
+        first: "Andrew",
+        last: "Nong",
+        id: 123
+    };
+    
+    try {
+        // Write the data to Firestore
+        await setDoc(userRef, docData);
+        console.log("User data written successfully");
+    } catch (error) {
+        console.error("Error writing document: ", error);
     }
-    setDoc(random , docData);
-};
+}
 
-
-//Auth state
-onAuthStateChanged(auth, user=>{
-    if(user != null){
-        console.log("Logged in");
-    }
-    else{
-        console.log("No user");
-    }
-});
-
-
+writingUsers();
