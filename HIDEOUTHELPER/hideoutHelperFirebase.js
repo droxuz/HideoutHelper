@@ -20,15 +20,22 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const db = getFirestore(app);
+const batch = db.batch();
 
-const file_air_filtering_unit = doc(db, 'Collection/AirFilteringUnit');
-const file_bitcoin_farm1 = doc(db,'Collection/BitcoinFarm1');
-const file_bitcoin_farm2 = doc(db,'Collection/BitcoinFarm2');
-const file_bitcoin_farm3 = doc(db,'Collection/BitcoinFarm3');
-const file_booze_generator = doc(db,'Collection/BoozeGenerator');
-const file_heating1 = doc(db,'Collection/Heating1');
-const file_heating2 = doc(db,'Collection/Heating2');
-const file_heating3 = doc(db,'Collection/Heating3');
+const ref_air_filtering_unit = doc(db, 'Collection/AirFilteringUnit');
+const ref_bitcoin_farm1 = doc(db,'Collection/BitcoinFarm1');
+const ref_bitcoin_farm2 = doc(db,'Collection/BitcoinFarm2');
+const ref_bitcoin_farm3 = doc(db,'Collection/BitcoinFarm3');
+const ref_booze_generator = doc(db,'Collection/BoozeGenerator');
+const ref_heating1 = doc(db,'Collection/Heating1');
+const ref_heating2 = doc(db,'Collection/Heating2');
+const ref_heating3 = doc(db,'Collection/Heating3');
+const ref_defective_wall1 = doc(db,'Collection/DefectiveWall1');
+const ref_defective_wall2 = doc(db,'Collection/DefectiveWall2');
+const ref_defective_wall3 = doc(db,'Collection/DefectiveWall3');
+const ref_defective_wall4 = doc(db,'Collection/DefectiveWall4');
+const ref_defective_wall5 = doc(db,'Collection/DefectiveWall5');
+const ref_defective_wall6 = doc(db,'Collection/DefectiveWall6');
 
 async function write_Heating1(){
     const Heating1 = {
@@ -37,7 +44,7 @@ async function write_Heating1(){
     };
     try {
         // Write the data to Firestore
-        await setDoc(file_heating1, Heating1);  
+        await setDoc(ref_heating1, Heating1);  
         console.log("User data written successfully");
     } catch (error) {
         console.error("Error writing document: ", error);
@@ -52,7 +59,7 @@ async function write_Heating2(){
     };
     try {
         // Write the data to Firestore
-        await setDoc(file_heating2, Heating2);  
+        await setDoc(ref_heating2, Heating2);  
         console.log("User data written successfully");
     } catch (error) {
         console.error("Error writing document: ", error);
@@ -67,7 +74,7 @@ async function write_Heating3(){
     };
     try {
         // Write the data to Firestore
-        await setDoc(file_heating3, Heating3);  
+        await setDoc(ref_heating3, Heating3);  
         console.log("User data written successfully");
     } catch (error) {
         console.error("Error writing document: ", error);
@@ -84,7 +91,7 @@ async function write_AirFilteringUnit() {
     
     try {
         // Write the data to Firestore
-        await setDoc(file_air_filtering_unit , Air_filtering_unit1);
+        await setDoc(ref_air_filtering_unit , Air_filtering_unit1);
         console.log("User data written successfully");
     } catch (error) {
         console.error("Error writing document: ", error);
@@ -102,7 +109,7 @@ async function write_BitcoinFarm1(){
     
     try {
         // Write the data to Firestore
-        await setDoc(file_bitcoin_farm1, Bitcoin_Farm1);  
+        await setDoc(ref_bitcoin_farm1, Bitcoin_Farm1);  
         console.log("User data written successfully");
     } catch (error) {
         console.error("Error writing document: ", error);
@@ -120,7 +127,7 @@ async function write_BitcoinFarm2(){
     
     try {
         // Write the data to Firestore
-        await setDoc(file_bitcoin_farm2, Bitcoin_Farm2);  
+        await setDoc(ref_bitcoin_farm2, Bitcoin_Farm2);  
         console.log("User data written successfully");
     } catch (error) {
         console.error("Error writing document: ", error);
@@ -138,7 +145,7 @@ async function write_BitcoinFarm3(){
     
     try {
         // Write the data to Firestore
-        await setDoc(file_bitcoin_farm3, Bitcoin_Farm3);  
+        await setDoc(ref_bitcoin_farm3, Bitcoin_Farm3);  
         console.log("User data written successfully");
     } catch (error) {
         console.error("Error writing document: ", error);
@@ -158,57 +165,108 @@ async function write_BoozeGenerator(){
     
     try {
         // Write the data to Firestore
-        await setDoc(file_booze_generator, Booze_Generator);  
+        await setDoc(ref_booze_generator, Booze_Generator);  
         console.log("User data written successfully");
     } catch (error) {
         console.error("Error writing document: ", error);
     }
 }
 
-async function write_DefectiveWall(){
-    
-    try{
-        await Promise.all([
-            db.collection('DefectiveWall1').add({
-                fleece: '1'
-            }),
-            db.collection('DefectiveWall2').add({
-                fleece: '1'
-            }),
-            db.collection('DefectiveWall3').add({
-                fleece: '1'
-            }),
-            db.collection('DefectiveWall4').add({
-                fierce_blow_sledgehammer: '1',
-                fleece: '1'
-            }),
-            db.collection('DefectiveWall5').add({
-                metal_cutting_scissors: '1',
-                toolset: '1',
-                fleece: '1'
-            }),
-            db.collection('DefectiveWall6').add({
-                corrugated_hose: '2',
-                duct_tape: '1',
-                toolset: '1',
-                pliers_elite: '1',
-                metal_spare_part: '5',
-                xenomorph_sealing_foam: '1',
-                bundle_of_wires: '2',
-                light_bulb: '2'
-            })
-        ]);
-        console.log("Document successfully written!");
+async function write_DefectiveWall1(){
+    const Defective_Wall1 = {
+        fleece: null
+    }
+    try {
+        // Write the data to Firestore
+        await setDoc(ref_defective_wall1, Defective_Wall1);  
+        console.log("User data written successfully");
     } catch (error) {
         console.error("Error writing document: ", error);
     }
 }
+async function write_DefectiveWall2(){
+    const Defective_Wall2 = {
+        fleece: '1'
+    }
+    try {
+        // Write the data to Firestore
+        await setDoc(ref_defective_wall2, Defective_Wall2);  
+        console.log("User data written successfully");
+    } catch (error) {
+        console.error("Error writing document: ", error);
+    }
+}
+async function write_DefectiveWall3(){
+    const Defective_Wall3 = {
+        fleece: '1'
+    }
+    try {
+        // Write the data to Firestore
+        await setDoc(ref_defective_wall3, Defective_Wall3);  
+        console.log("User data written successfully");
+    } catch (error) {
+        console.error("Error writing document: ", error);
+    }
+}
+
+async function write_DefectiveWall4(){
+    const Defective_Wall4 = {
+        fleece: '1' ,
+        fierce_blow_sledgehammer: '1'
+    }
+    try {
+        // Write the data to Firestore
+        await setDoc(ref_defective_wall4, Defective_Wall4);  
+        console.log("User data written successfully");
+    } catch (error) {
+        console.error("Error writing document: ", error);
+    }
+}
+async function write_DefectiveWall5(){
+    const Defective_Wall5 = {
+        fleece: '1',
+        metal_cutting_scissors: '1',
+        toolset: '1'
+    }
+    try {
+        // Write the data to Firestore
+        await setDoc(ref_defective_wall5, Defective_Wall5);  
+        console.log("User data written successfully");
+    } catch (error) {
+        console.error("Error writing document: ", error);
+    }
+}
+async function write_DefectiveWall6(){
+    const Defective_Wall6 = {
+        corrugated_hose:'2',
+        duct_tape: '1',
+        toolset: '1',
+        pliers_elite: '1',
+        metal_spare_part: '5',
+        xenomorph_sealing_foam: '1',
+        bundle_of_wires: '2',
+        light_bulb: '2'
+    }
+    try {
+        // Write the data to Firestore
+        await setDoc(ref_defective_wall6, Defective_Wall6);  
+        console.log("User data written successfully");
+    } catch (error) {
+        console.error("Error writing document: ", error);
+    }
+}
+
 write_AirFilteringUnit();
 write_BitcoinFarm1();
 write_BitcoinFarm2();
 write_BitcoinFarm3();
 write_BoozeGenerator();
-write_DefectiveWall();
+write_DefectiveWall1();
+write_DefectiveWall2();
+write_DefectiveWall3();
+write_DefectiveWall4();
+write_DefectiveWall5();
+write_DefectiveWall6();
 write_Heating1();
 write_Heating2();
 write_Heating3();
