@@ -20,7 +20,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const db = getFirestore(app);
-const batch = db.batch();
+
 
 const ref_air_filtering_unit = doc(db, 'Collection/AirFilteringUnit');
 const ref_bitcoin_farm1 = doc(db,'Collection/BitcoinFarm1');
@@ -36,6 +36,13 @@ const ref_defective_wall3 = doc(db,'Collection/DefectiveWall3');
 const ref_defective_wall4 = doc(db,'Collection/DefectiveWall4');
 const ref_defective_wall5 = doc(db,'Collection/DefectiveWall5');
 const ref_defective_wall6 = doc(db,'Collection/DefectiveWall6');
+const ref_generator1 = doc(db,'Collection/Generator1');
+const ref_generator2 = doc(db,'Collection/Generator2');
+const ref_generator3 = doc(db,'Collection/Generator3');
+const ref_gym = doc(db,'Collection/Gym');
+const ref_hall_of_fame1 = doc(db,'Collection/HallofFame1');
+const ref_hall_of_fame2 = doc(db,'Collection/HallofFame2');
+const ref_hall_of_fame3 = doc(db,'Collection/HallofFame3');
 
 async function write_Heating1(){
     const Heating1 = {
@@ -255,6 +262,128 @@ async function write_DefectiveWall6(){
         console.error("Error writing document: ", error);
     }
 }
+async function write_Generator1(){
+    const Generator1 = {
+        spark_plug: '1',
+        roubles: '100000'
+    }
+    try {
+        // Write the data to Firestore
+        await setDoc(ref_generator1, Generator1);  
+        console.log("User data written successfully");
+    } catch (error) {
+        console.error("Error writing document: ", error);
+    }
+}
+
+async function write_Generator2(){
+    const Generator2 = {
+        bulbex_cable_cutter: '1',
+        phase_control_relay: '5',
+        electric_motor: '1',
+        bundle_of_wires: '15'
+    }
+    try {
+        // Write the data to Firestore
+        await setDoc(ref_generator2, Generator2);  
+        console.log("User data written successfully");
+    } catch (error) {
+        console.error("Error writing document: ", error);
+    }
+}
+
+async function write_Generator3(){
+    const Generator3 = {
+        power_supply_unit: '5',
+        phase_control_relay: '6',
+        electric_motor: '3',
+        spark_plug: '10',
+        metal_spare_part: '7'
+    }
+    try {
+        // Write the data to Firestore
+        await setDoc(ref_generator3, Generator3);  
+        console.log("User data written successfully");
+    } catch (error) {
+        console.error("Error writing document: ", error);
+    }
+}
+
+async function write_Gym(){
+    const Gym = {
+        toolset: '1',
+        electric_motor: '1',
+        metal_cutting_scissors: '1',
+        screw_nuts: '3',
+        bolts: '3',
+        wd40_100ml: '1',
+        insulating_tape: '1'
+    }
+    try {
+        // Write the data to Firestore
+        await setDoc(ref_gym, Gym);  
+        console.log("User data written successfully");
+    } catch (error) {
+        console.error("Error writing document: ", error);
+    }
+}
+async function write_HallOfFame1(){
+    const Halloffame1 = {
+        insulating_tape: '2',
+        pack_of_nails: '5',
+        light_bulb: '5',
+        cat_figurine: '1',
+        fleece: '5',
+        round_pliers: '1'
+    }
+    try {
+        // Write the data to Firestore
+        await setDoc(ref_hall_of_fame1, Halloffame1);  
+        console.log("User data written successfully");
+    } catch (error) {
+        console.error("Error writing document: ", error);
+    }
+}
+async function write_HallOfFame2(){
+    const Halloffame2 = {
+        tech_manual: '1',
+        pliers_elite: '1',
+        toolset: '1',
+        golden_rooster_figurine: '1',
+        energy_saving_lamps: '10',
+        pack_of_screws: '6',
+        duct_tape: '3',
+        xenomorph_sealing_foam: '2',
+        tube_of_poxeram_cold_welding: '2'    
+    }
+    try {
+        // Write the data to Firestore
+        await setDoc(ref_hall_of_fame2, Halloffame2);  
+        console.log("User data written successfully");
+    } catch (error) {
+        console.error("Error writing document: ", error);
+    }
+}
+async function write_HallOfFame3(){
+    const Halloffame3 = {
+        set_files_master: '1',
+        electric_drill: '1',
+        bronze_lion_figurine: '1',
+        energy_saving_lamps: '15',
+        kektape_duct_tape: '3',
+        tshaped_plug: '3',
+        metal_spare_part: '15',
+        power_cord: '5'
+    }
+    try {
+        // Write the data to Firestore
+        await setDoc(ref_hall_of_fame3, Halloffame3);  
+        console.log("User data written successfully");
+    } catch (error) {
+        console.error("Error writing document: ", error);
+    }
+}
+
 
 write_AirFilteringUnit();
 write_BitcoinFarm1();
@@ -267,6 +396,13 @@ write_DefectiveWall3();
 write_DefectiveWall4();
 write_DefectiveWall5();
 write_DefectiveWall6();
+write_Generator1();
+write_Generator2();
+write_Generator3();
+write_Gym();
+write_HallOfFame1();
+write_HallOfFame2();
+write_HallOfFame3();
 write_Heating1();
 write_Heating2();
 write_Heating3();
