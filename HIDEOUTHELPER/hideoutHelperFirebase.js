@@ -43,6 +43,12 @@ const ref_gym = doc(db,'Collection/Gym');
 const ref_hall_of_fame1 = doc(db,'Collection/HallofFame1');
 const ref_hall_of_fame2 = doc(db,'Collection/HallofFame2');
 const ref_hall_of_fame3 = doc(db,'Collection/HallofFame3');
+const ref_illumination1 = doc(db,"Collection/Illumination1");
+const ref_illumination2 = doc(db,"Collection/Illumination2");
+const ref_illumination3 = doc(db,"Collection/Illumination3");
+const ref_intelligencecenter1 = doc(db,"Collection/IntelligenceCenter1");
+const ref_intelligencecenter2 = doc(db,"Collection/IntelligenceCenter2");
+const ref_intelligencecenter3 = doc(db,"Collection/IntelligenceCenter3");
 
 async function write_Heating1(){
     const Heating1 = {
@@ -383,8 +389,93 @@ async function write_HallOfFame3(){
         console.error("Error writing document: ", error);
     }
 }
-
-
+async function write_Illumination1(){
+    const Illumination1 = {
+        roubles: '10000',
+        crickent_lighter: '1'
+    }
+    try {
+        // Write the data to Firestore
+        await setDoc(ref_illumination1, Illumination1);  
+        console.log("User data written successfully");
+    } catch (error) {
+        console.error("Error writing document: ", error);
+    }
+}
+async function write_Illumination2(){
+    const Illumination2 = {
+        light_bulb: '14',
+        bundle_of_wires: '10'
+    }
+    try {
+        // Write the data to Firestore
+        await setDoc(ref_illumination2, Illumination2);  
+        console.log("User data written successfully");
+    } catch (error) {
+        console.error("Error writing document: ", error);
+    }
+}
+async function write_Illumination3(){
+    const Illumination3 = {
+        roubles: '50000',
+        capacitors: '7',
+        energy_saving_lamps: '12',
+        bundle_of_wires: '6'
+    }
+    try {
+        // Write the data to Firestore
+        await setDoc(ref_illumination3, Illumination3);  
+        console.log("User data written successfully");
+    } catch (error) {
+        console.error("Error writing document: ", error);
+    }
+}
+async function write_IntelligenceCenter1(){
+    const IntelligenceCenter1= {
+        factory_plan_map: '1',
+        intelligence_folder: '1',
+        topographic_survey_map: '1'
+    }
+    try {
+        // Write the data to Firestore
+        await setDoc(ref_intelligencecenter1, IntelligenceCenter1);  
+        console.log("User data written successfully");
+    } catch (error) {
+        console.error("Error writing document: ", error);
+    }
+}
+async function write_IntelligenceCenter2(){
+    const IntelligenceCenter2= {
+        intelligence_folder: '3',
+        secure_flash_drive: '3',
+        power_cord: '7',
+        damaged_hard_drive: '4'
+    }
+    try {
+        // Write the data to Firestore
+        await setDoc(ref_intelligencecenter2, IntelligenceCenter2);  
+        console.log("User data written successfully");
+    } catch (error) {
+        console.error("Error writing document: ", error);
+    }
+}
+async function write_IntelligenceCenter3(){
+    const IntelligenceCenter3= {
+        military_corrugated_hose: '5',
+        military_cofdm_wireless_signal_transmitter: '2',
+        far_forward_gps_signal_amplifier: '1',
+        vpx_flash_storage_module: '2',
+        military_flash_drive: '5',
+        secure_magnetic_tape_cassette: '2'
+    }
+    try {
+        // Write the data to Firestore
+        await setDoc(ref_intelligencecenter3, IntelligenceCenter3);  
+        console.log("User data written successfully");
+    } catch (error) {
+        console.error("Error writing document: ", error);
+    }
+}
 write_AirFilteringUnit();
 write_BitcoinFarm1();
 write_BitcoinFarm2();
@@ -406,3 +497,9 @@ write_HallOfFame3();
 write_Heating1();
 write_Heating2();
 write_Heating3();
+write_Illumination1();
+write_Illumination2();
+write_Illumination3();
+write_IntelligenceCenter1();
+write_IntelligenceCenter2();
+write_IntelligenceCenter3();
