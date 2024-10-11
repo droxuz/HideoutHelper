@@ -4,7 +4,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/fireba
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-analytics.js";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
-import {getFirestore, doc, setDoc} from 'https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js';
+import {getFirestore, doc, setDoc, writeBatch} from 'https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js';
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional\
 const firebaseConfig = {
@@ -49,6 +49,14 @@ const ref_illumination3 = doc(db,"Collection/Illumination3");
 const ref_intelligencecenter1 = doc(db,"Collection/IntelligenceCenter1");
 const ref_intelligencecenter2 = doc(db,"Collection/IntelligenceCenter2");
 const ref_intelligencecenter3 = doc(db,"Collection/IntelligenceCenter3");
+const ref_lavatory1 = doc(db,'Collection/Lavatory1');
+const ref_lavatory2 = doc(db,'Collection/Lavatory2');
+const ref_lavatory3 = doc(db,'Collection/Lavatory3');
+const ref_library1 = doc(db,'Collection/Library1');
+const ref_medstation1 = doc(db,'Collection/Medstation1');
+const ref_medstation2 = doc(db,'Collection/Medstation2');
+const ref_medstation3 = doc(db,'Collection/Medstation3');
+
 
 async function write_Heating1(){
     const Heating1 = {
@@ -476,6 +484,149 @@ async function write_IntelligenceCenter3(){
         console.error("Error writing document: ", error);
     }
 }
+async function write_Lavatory1(){
+    const Lavatory1= {
+        roubles: '2000',
+        toilet_paper: '1',
+        toothpaste: '1',
+        soap: '1',
+        awl: '1'
+    }
+    try {
+        // Write the data to Firestore
+        await setDoc(ref_lavatory1, Lavatory1);  
+        console.log("User data written successfully");
+    } catch (error) {
+        console.error("Error writing document: ", error);
+    }
+}
+async function write_Lavatory2(){
+    const Lavatory2= {
+        kektape_duct_tape: '1',
+        corrugated_hose: '3',
+        pack_of_screws:'5',
+        electric_drill:'1',
+        sewing_kit: '2'
+    }
+    try {
+        // Write the data to Firestore
+        await setDoc(ref_lavatory2, Lavatory2);  
+        console.log("User data written successfully");
+    } catch (error) {
+        console.error("Error writing document: ", error);
+    }
+}
+async function write_Lavatory3(){
+    const Lavatory3= {
+        xenomorph_sealing_foam: '3',
+        corrugated_hose: '6',
+        pressure_gauge:'2',
+        toolset:'1'
+    }
+    try {
+        // Write the data to Firestore
+        await setDoc(ref_intelligencecenter3, Lavatory3);  
+        console.log("User data written successfully");
+    } catch (error) {
+        console.error("Error writing document: ", error);
+    }
+}
+async function write_Library(){
+    const Library1= {
+        bakeezy_cook_book:'1',
+        slim_diary: '2',
+        tech_manual: '5',
+        chainlet:'2',
+        horse_figurine: '1',
+        roubles: '400000'
+    }
+    try {
+        // Write the data to Firestore
+        await setDoc(ref_library1, Library1);  
+        console.log("User data written successfully");
+    } catch (error) {
+        console.error("Error writing document: ", error);
+    }
+}
+async function write_Medstation1(){
+    const Medstation1= {
+        roubles:'50000',
+        disposable_syringe: '1',
+        pile_of_meds: '1',
+        aseptic_bandage: '2',
+        bottle_of_ololo_multivitamins: '1'
+    }
+    try {
+        // Write the data to Firestore
+        await setDoc(ref_medstation1, Medstation1);  
+        console.log("User data written successfully");
+    } catch (error) {
+        console.error("Error writing document: ", error);
+    }
+}
+async function write_Medstation2(){
+    const Medstation2= {
+        bottle_of_saline_solution: '3',
+        mdeical_bloodset: '2',
+        esmarch_tourniquet: '5',
+        medical_tools: '3',
+        roubles: '150000'
+    }
+    try {
+        // Write the data to Firestore
+        await setDoc(ref_medstation3, Medstation2);  
+        console.log("User data written successfully");
+    } catch (error) {
+        console.error("Error writing document: ", error);
+    }
+}
+async function write_Medstation3(){
+    const Medstation3= {
+        opthalmoscope: '1',
+        roubles: '500000',
+        bottle_of_saline_solution: '4',
+        ledx_skin_transilluminator: '1'
+    }
+    try {
+        // Write the data to Firestore
+        await setDoc(ref_medstation3, Medstation3);  
+        console.log("User data written successfully");
+    } catch (error) {
+        console.error("Error writing document: ", error);
+    }
+}
+async function write_Nutritionunit(){
+    const batch = writeBatch(db);
+    const ref_nutritionunit1 = doc(db,'Collection/NutritionUnit1');
+    const ref_nutritionunit2 = doc(db,'Collection/NutritionUnit2');
+    const ref_nutritionunit3 = doc(db,'Collection/NutritionUnit3');
+    batch.set(ref_nutritionunit1, {
+        can_of_white_salt:'1',
+        power_cord: '1',
+        phase_control_relay: '2',
+        roubles:'25000'
+    });
+    batch.set(ref_nutritionunit2,{
+        wrench:'4',
+        corrugated_hose:'2',
+        alkaline_cleaner_for_heat_exchanger: '2',
+        phase_control_relay: '1'
+    });
+    batch.set(ref_nutritionunit3,{
+        roubles:'125000',
+        can_of_majaica_coffee_beans: '3',
+        pack_of_sodium_bicarbonate:'3',
+        smoked_chimney_drain_cleaner:'2'
+    });
+    try {
+        await batch.commit();
+        console.log("Batch write to medstation1, medstation2, and medstation3 successful!");
+      } catch (error) {
+        console.error("Error in batch write: ", error); // Log any errors
+      }
+    
+}
+
 write_AirFilteringUnit();
 write_BitcoinFarm1();
 write_BitcoinFarm2();
@@ -503,3 +654,12 @@ write_Illumination3();
 write_IntelligenceCenter1();
 write_IntelligenceCenter2();
 write_IntelligenceCenter3();
+write_Lavatory1();
+write_Lavatory2();
+write_Lavatory3();
+write_Library();
+write_Medstation1();
+write_Medstation2();
+write_Medstation3();
+write_Nutritionunit();
+
