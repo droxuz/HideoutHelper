@@ -56,8 +56,8 @@ const ref_library1 = doc(db,'Collection/Library1');
 const ref_medstation1 = doc(db,'Collection/Medstation1');
 const ref_medstation2 = doc(db,'Collection/Medstation2');
 const ref_medstation3 = doc(db,'Collection/Medstation3');
-
-
+const ref_scavcase = doc(db,'Collection/Scavcase');
+const ref_solarpower = doc(db,'Collection/Solarpower');
 async function write_Heating1(){
     const Heating1 = {
         roubles: '25000',
@@ -574,7 +574,7 @@ async function write_Medstation2(){
     }
     try {
         // Write the data to Firestore
-        await setDoc(ref_medstation3, Medstation2);  
+        await setDoc(ref_medstation2, Medstation2);  
         console.log("User data written successfully");
     } catch (error) {
         console.error("Error writing document: ", error);
@@ -627,6 +627,305 @@ async function write_Nutritionunit(){
     
 }
 
+async function write_RestSpace(){
+    const batch = writeBatch(db);
+    const ref_restspace1 = doc(db,'Collection/Restspace1');
+    const ref_restspace2 = doc(db,'Collection/Restspace2');
+    const ref_restspace3 = doc(db,'Collection/Restspace3');
+    batch.set(ref_restspace1,{
+        roubles:'10000',
+        duct_tape:'1',
+        classic_matches:'1'
+    });
+    batch.set(ref_restspace2,{
+        energy_saving_lamps:'3',
+        roubles:'35000',
+        dvd_drive: '1',
+        magnet: '1'
+    });
+    batch.set(ref_restspace3,{
+        greenbat_lithium_battery:'5',
+        power_cord:'4',
+        capacitors:'5',
+        bundle_of_wires:'7'
+    })
+    try{
+        await batch.commit();
+        console.log('Wrote restspace data');
+    }catch{
+        console.log('Failed to write restspace data', error)
+    }
+}
+async function write_ScavCase(){
+    const Scavcase={
+        golden_rooster_figurine: '1',
+        lucky_scav_junkbox: '1',
+        bottle_of_fierce_hatchling: '3',
+        roler_submariner_gold_wrist_watch: '4',
+        golden_neck_chain: '8',
+        gold_skull_ring: '6',
+        bronze_lion_figurine: '3'
+    }
+    try{
+        await setDoc(ref_scavcase,Scavcase);
+        console.log('User data written successfully');
+    } catch (error) {
+        console.error("Error writing document: ", error);
+    }
+}
+async function write_Security(){
+    const batch = writeBatch(db);
+    const ref_Security1 = doc(db,'Collection/Security1');
+    const ref_Security2 = doc(db,'Collection/Security2');
+    const ref_Security3 = doc(db,'Collection/Security3');
+    batch.set(ref_Security1,{
+        roubles: '20000',
+        construction_measuring_tape:'1'
+    });
+    batch.set(ref_Security2,{
+        wd40_100ml:'1',
+        roubles:'45000',
+        pliers_elite:'1',
+        tp200_tnt_brick: '1'
+    });
+    batch.set(ref_Security3,{
+        nixxor_lens: '8',
+        working_lcd:'2',
+        bundle_of_wires:'4',
+        ssd_drive:'1'
+    })
+    try{
+        await batch.commit(db);
+        console.log("Wrote security data");
+    }catch{
+        console.log("Failed to write security data");
+    }
+}
+async function write_ShootingRange(){
+    const batch = writeBatch(db);
+    const ref_shootingrange1 = doc(db,'Collection/Shootingrange1');
+    const ref_shootingrange2 = doc(db,'Collection/Shootingrange2');
+    const ref_shootingrange3 = doc(db,'Collection/Shootingrange3');
+    batch.set(ref_shootingrange1,{
+        roubles: '20000',
+        metal_spare_part:'1',
+        bolts:'1',
+        screw_nuts:'1'
+    });
+    batch.set(ref_shootingrange2,{
+        electric_motor:'6',
+        construction_measuring_tape:'1',
+        tube_of_poxeram_cold_welding:'1',
+        toolset:'1',
+        pack_of_screws:'3',
+        electric_drill:'1',
+        metal_spare_part:'5',
+        wifi_camera:'3',
+        bundle_of_wires:'3',
+        energy_saving_lamps:'6'
+    });
+    batch.set(ref_shootingrange3,{
+        set_files_master:'1',
+        printed_circuit_board:'3',
+        bundle_of_wires:'5',
+        metal_spare_part:'5',
+        capacitors: '5',
+        phase_control_relay:'3',
+        power_cord: '5',
+        leatherman_multitool:'1',
+        tech_manual:'1'
+    });
+    try{
+        await batch.commit(db);
+        console.log('Wrote shooting range data')
+    }catch{
+        console.log('Failed to write shooting range data')
+    }
+}
+async function write_SolarPower(){
+    const Solarpower = {
+        phased_array_element:'4',
+        advanced_current_converter:'1',
+        euros: '25000',
+        working_lcd:'3',
+        military_cable:'10',
+        military_power_filter:'10'
+    }
+    try{
+        await setDoc(ref_solarpower,Solarpower);
+        console.log('Wrote solar power data');
+    }catch{
+        console.log('Failed to write solar power data')
+    }
+}
+async function write_Stash(){
+    const batch = writeBatch(db);
+    const ref_stash1 = doc(db,'Collection/Stash1');
+    const ref_stash2 = doc(db,'Collection/Stash2');
+    const ref_stash3 = doc(db,'Collection/Stash3');
+    const ref_stash4 = doc(db,'Collection/Stash4');
+    batch.set(ref_stash1,{
+
+    });
+    batch.set(ref_stash2,{
+        wd40_100ml:'4',
+        hand_drill:'1',
+        pack_of_nails:'5',
+        pack_of_screws:'10',
+        roubles:'2500000'
+    });    
+    batch.set(ref_stash3,{
+        electric_drill:'2',
+        pack_of_screws:'15',
+        pack_of_screws:'7',
+        roubles:'8500000'
+    });
+    batch.set(ref_stash4,{
+        euros: '200000',
+        screw_nuts: '10',
+        bolts:'10',
+        shustrilo_sealing_foam: '5',
+        ratchet_wrench: '2'
+    })
+    try{
+        await batch.commit(db);
+        console.log('Wrote stash data');
+    }catch{
+        console.log('Failed to write stash data');
+    }
+
+}
+async function write_Vents(){
+    const batch = writeBatch(db);
+    const ref_vents1 = doc(db,'Collection/Vents1');
+    const ref_vents2 = doc(db,'Collection/Vents2');
+    const ref_vents3 = doc(db,'Collection/Vents3');
+    batch.set(ref_vents1,{
+        roubles: '25000'
+    });
+    batch.set(ref_vents2,{
+        metal_spare_part:'2',
+        cpu_fan:'3',
+        car_battery:'1',
+        electric_motor:'1'
+    });
+    batch.set(ref_vents3,{
+        printed_circuit_board:'5',
+        electric_motor:'4',
+        metal_spare_part:'5',
+        bundle_of_wires:'14',
+        car_battery:'4'
+    });
+    try{
+        batch.commit(db);
+        console.log('Wrote vents data');
+    }catch{
+        console.log('Failed to write vents data');
+    }
+}
+async function write_WaterCollecter(){
+    const batch = writeBatch(db);
+    const ref_watercollector1 = doc(db,'Collection/Watercollector1');
+    const ref_watercollector2 = doc(db,'Collection/Watercollector2');
+    const ref_watercollector3 = doc(db,'Collection/Watercollector3');
+    batch.set(ref_watercollector1,{
+        duct_tape:'3',
+        screw_nuts:'5',
+        bolts:'5',
+        corrugated_hose:'4'
+    });
+    batch.set(ref_watercollector2,{
+        toolset:'2',
+        corrugated_hose:'6',
+        electric_motor:'2',
+        kektape_duct_tape:'2'
+    });
+    batch.set(ref_watercollector3,{
+        ratchet_wrench:'1',
+        roubles:'20000',
+        pliers_elite:'2',
+        shustrilo_sealing_foam:'5'
+    });
+    try{
+        await batch.commit(db);
+        console.log('Wrote water collector data');
+    }catch{
+        console.log('Failed to write water collector data');
+    }
+}
+async function write_WeaponRack(){
+    const batch = writeBatch(db);
+    const ref_WeaponRack1 = doc(db,'Collection/Weaponrack1');
+    const ref_WeaponRack2 = doc(db,'Collection/Weaponrack2');
+    const ref_WeaponRack3 = doc(db,'Collection/Weaponrack3');
+    batch.set(ref_WeaponRack1,{
+        hand_drill:'1',
+        metal_cutting_scissors:'1',
+        energy_saving_lamps:'5',
+        xenomorph_sealing_foam:'3',
+        bolts:'15',
+        insulating_tape:'5',
+        pack_of_nails: '5'
+    });
+    batch.set(ref_WeaponRack2,{
+        metal_spare_part:'5',
+        pack_of_screws:'10',
+        electric_drill:'1',
+        bundle_of_wires:'10',
+        set_files_master:'1',
+        tube_of_poxeram_cold_welding:'3',
+        energy_saving_lamps:'10',
+        duct_tape:'5',
+        weapon_parts:'5'
+    });
+    batch.set(ref_WeaponRack3,{
+        electric_drill:'1',
+        energy_saving_lamps:'15',
+        metal_spare_part:'10',
+        kektape_duct_tape:'5',
+        bundle_of_wires:'15',
+        shustrilo_sealing_foam:'3',
+        tech_manual:'1',
+        fire_klean_gun_lube:'1'
+    });
+    try{
+        await batch.commit(db);
+        console.log('Wrote weapon rack data');
+    }catch{
+        console.log('Failed to weapon rack data');
+    }
+}
+async function write_WorkBench(){
+    const batch = writeBatch(db);
+    const ref_workbench1 = doc(db,'Collection/Workbench1');
+    const ref_workbench2 = doc(db,'Collection/Workbench2');
+    const ref_workbench3 = doc(db,'Collection/Workbench3');
+    batch.set(ref_workbench1,{
+        screw_nuts:'2',
+        bolts:'2',
+        leatherman_multitool:'1'
+    });
+    batch.set(ref_workbench2,{
+        bolts:'6',
+        toolset:'3',
+        set_files_master:'1',
+        electric_drill:'2',
+        weapon_parts:'3'
+    });
+    batch.set(ref_workbench3,{
+        roubles:'395000',
+        pliers_elite:'2',
+        fire_klean_gun_lube:'1',
+        can_of_thermite:'2'
+    });
+    try{
+        await batch.commit(db);
+        console.log('Wrote workbench data');
+    }catch{
+        console.log('Failed to write workbench data');
+    }
+}
+
 write_AirFilteringUnit();
 write_BitcoinFarm1();
 write_BitcoinFarm2();
@@ -662,4 +961,13 @@ write_Medstation1();
 write_Medstation2();
 write_Medstation3();
 write_Nutritionunit();
-
+write_RestSpace();
+write_ScavCase();
+write_Security();
+write_ShootingRange();
+write_SolarPower
+write_Stash();
+write_Vents();
+write_WaterCollecter()
+write_WeaponRack();
+write_WorkBench();
