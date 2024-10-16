@@ -4,7 +4,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/fireba
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-analytics.js";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
-import {getFirestore, doc, setDoc, writeBatch} from 'https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js';
+import {getFirestore, doc, setDoc, writeBatch, getDoc} from 'https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js';
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional\
 const firebaseConfig = {
@@ -722,7 +722,92 @@ async function write_WorkBench(){
         console.log('Failed to write workbench data');
     }
 }
+async function query_hideout(selectedAirFilteringUnit) {
+    const airFilteringToQuery ={
+        'airFilteringNotInstalled': ['AirFilteringUnit'],
+        'airFilteringInstalled': []
+    };
 
+    // Get the workbench and heating queries
+    const facilitiesToQuery = [
+        ...(airFilteringToQuery[selectedAirFilteringUnit] || [])
+    ];
+    console.log('Facilities to query:', facilitiesToQuery);
+
+    const results = await Promise.all(facilitiesToQuery.map(async (facility) => {
+        const docRef = doc(db, 'Collection', facility);
+        const docSnap = await getDoc(docRef);
+        
+        console.log(`Querying ${facility}:`, docSnap.exists() ? docSnap.data() : 'No document found'); // Log data or absence
+        
+        return docSnap.exists() ? docSnap.data() : null; // Return null if document doesn't exist
+    }));
+
+    // Process the results
+    const combinedItems = {};
+    results.forEach(facility => {
+        if (facility) {
+            for (let [item, count] of Object.entries(facility)) {
+                // Convert the string count to a number, if applicable
+                const numericCount = parseInt(count, 10) || 0; // Default to 0 if parsing fails
+                combinedItems[item] = (combinedItems[item] || 0) + numericCount;
+            }
+        }
+    });
+
+    console.log('Combined items:', combinedItems); // Log combined items for debugging
+
+    // Update the modal with the summed items
+    const itemsUl = document.getElementById("itemUl");
+    itemsUl.innerHTML = ''; // Clear previous items
+    for (let [item, count] of Object.entries(combinedItems)) {
+        let li = document.createElement('li');
+        li.className = 'item';
+        li.textContent = `${item}: ${count}`;
+        itemsUl.appendChild(li);
+    }
+
+    // If no items were found, add a message
+    if (Object.keys(combinedItems).length === 0) {
+        let li = document.createElement('li');
+        li.className = 'item';
+        li.textContent = 'No items found.';
+        itemsUl.appendChild(li);
+    }
+}
+document.addEventListener("DOMContentLoaded", function() { 
+    // Get modal element
+    var modal = document.getElementById("myModal");
+
+    // Get open modal button
+    var openModalBtn = document.getElementById("openModalBtn");
+
+    // Get close button
+    var closeBtn = document.getElementsByClassName("close")[0];
+
+    // Listen for open click
+    openModalBtn.addEventListener("click", function() {
+        const selectedAirFilteringUnit = document.getElementById("airFilteringUnitID").value;
+        console.log('Selected', selectedAirFilteringUnit)
+        query_hideout(selectedAirFilteringUnit);
+
+        modal.style.display = "block";
+        
+
+    });
+
+    // Listen for close click
+    closeBtn.addEventListener("click", function() {
+        modal.style.display = "none";
+    });
+
+    // Listen for outside click
+    window.addEventListener("click", function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    });
+});
 write_AirFilteringUnit();
 write_BitcoinFarm();
 write_BoozeGenerator();
