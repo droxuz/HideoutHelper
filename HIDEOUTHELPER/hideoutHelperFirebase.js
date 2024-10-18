@@ -728,9 +728,162 @@ async function query_hideout(selectedAirFilteringUnit) {
         'airFilteringInstalled': []
     };
 
-    // Get the workbench and heating queries
+    const bitcoinFarmToQuery = {
+        'bitcoinNotInstalled': ['BitcoinFarm1','BitcoinFarm2','BitcoinFarm3'],
+        'bitcoinFarm1': ['BitcoinFarm2','BitcoinFarm3'],
+        'bitcoinFarm2': ['Bitcoinfarm3'],
+        'bitcoinFarm3': []
+    };
+    
+    const boozeGeneratorToQuery ={
+        'boozeGeneratorNotInstalled': ['BoozeGenerator'],
+        'boozeGeneratorInstalled':[]
+    }
+
+    const defectiveWallToQuery ={
+        'defectiveWallNotInstalled': ['DefectiveWall1','DefectiveWall2','DefectiveWall3','DefectiveWall4','DefectiveWall5','DefectiveWall6'],
+        'defectiveWall1':['DefectiveWall2','DefectiveWall3','DefectiveWall4','DefectiveWall5','DefectiveWall6'],
+        'defectiveWall2':['DefectiveWall3','DefectiveWall4','DefectiveWall5','DefectiveWall6'],
+        'defectiveWall3':['DefectiveWall4','DefectiveWall5','DefectiveWall6'],
+        'defectiveWall4':['DefectiveWall5','DefectiveWall6'],
+        'defectiveWall5':['DefectiveWall6'],
+        'defectiveWall6':[]
+    };
+    const generatorToQuery = {
+        'generatorNotInstalled': ['Generator1','Generator2','Generator3'],
+        'generator1': ['Generator2','Generator3'],
+        'generator2': ['Generator3'],
+        'generator3': []
+    };
+
+    const gymToQuery = {
+        'gymNotInstalled': ['Gym'],
+        'gymOn': []
+    };
+
+    const hallOfFameToQuery = {
+        'hallOfFameNotInstalled': ['HallofFame1','HallofFame2','HallofFame3'],
+        'hallOfFame1': ['HallofFame2','HallofFame3'],
+        'hallOfFame2': ['HallofFame3'],
+        'hallOfFame3': []
+    };
+
+    const heatingToQuery ={
+        'heatingNotInstalled': ['Heating1','Heating2','Heating3'],
+        'heating1':['Heating2','Heating3'],
+        'heating2':['Heating3'],
+        'heating3':[]
+    };
+
+    const illuminationToQuery ={
+        'illuminationNotInstalled': ['Illumination1','Illumination2','Illumination3'],
+        'illumination1': ['Illumination2','Illumination3'],
+        'illumination2': ['Illumination3'],
+        'illumination3': []
+    };
+
+    const intelligenceCenterToQuery = {
+        'intelligenceCenterNotInstalled': ['IntelligenceCenter1','IntelligenceCenter2','IntelligenceCenter3'],
+        'intelligenceCenter1': ['IntelligenceCenter2','IntelligenceCenter3'],
+        'intelligenceCenter2': ['IntelligenceCenter3'],
+        'intelligenceCenter3': []
+    };
+
+    const lavatoryToQuery = {
+        'lavatoryNotInstalled': ['Lavatory1','Lavatory2','Lavatory3'],
+        'lavatory1': ['Lavatory2','Lavatory3'],
+        'lavatory2': ['Lavatory3'],
+        'lavatory3': []
+    };
+    
+    const libraryToQuery ={
+        'libraryNotInstalled': ['Library1'],
+        'libraryInstalled': []
+    };
+
+    const medstationToQuery = {
+        'medStationNotInstalled': ['Medstation1','Medstation2','Medstation3'],
+        'medStation1': ['Medstation2','Medstation3'],
+        'medStation2': ['Medstation3'],
+        'medStation3': []
+    };
+
+    const nutritionUnitToQuery = {
+        'nutritionUnitNotInstalled': ['NutritionUnit1','NutritionUnit2','NutritionUnit3'],
+        'nutritionUnit1': ['NutritionUnit2','NutritionUnit3'],
+        'nutritionUnit2': ['NutritionUnit3'],
+        'nutritionUnit3': []
+    };
+
+    const restSpaceToQuery = {
+        'restSpaceNotInstalled': ['Restspace1','Restspace2','Restspace3'],
+        'restSpace1': ['Restspace2','Restspace3'],
+        'restSpace2': ['Restspace3'],
+        'restSpace3': []
+    };
+    
+    const scavCaseToQuery ={
+        'scavCaseNotInstalled': ['Scavcase'],
+        'scavCaseInstalled': []
+    };
+
+    const securityToQuery = {
+        'securityNotInstalled': ['Security1','Security2','Security3'],
+        'security1': ['Security2','Security3'],
+        'security2': ['Security3'],
+        'security3': []
+    };
+
+    const shootingRangeToQuery ={
+        'shootingRangeNotInstalled': ['Shootingrange1','Shootingrange2','Shootingrange3'],
+        'shootingRange1': ['Shootingrange2','Shootingrange3'],
+        'shootingRange2': ['Shootingrange3'],
+        'shootingRange3': []
+    };
+
+    const solarPowerToQuery = {
+        'solarPowerNotInstalled': ['Solarpower'],
+        'solarPowerInstalled': []
+    };
+
+    const stashToQuery ={
+        'stash1': ['Stash2','Stash3','Stash4'],
+        'stash2': ['Stash3','Stash4'],
+        'stash3': ['Stash4'],
+        'stash4': []
+    };
+
+    const ventsToQuery ={
+        'ventNotInstalled': ['Vents1','Vents2','Vents3'],
+        'vents1': ['Vents2','Vents3'],
+        'vents2': ['Vents3'],
+        'vents3': []
+    };
+
+    const waterCollectorToQuery ={
+        'waterCollectorNotInstalled': ['Watercollector1','Watercollector2','Watercollector3'],
+        'waterCollector1': ['Watercollector2','Watercollector3'],
+        'waterCollector2': ['Watercollector3'],
+        'waterCollector3': []
+    };
+
+    const weaponRackToQuery = {
+        'weaponRackNotInstalled': ['Weaponrack1','Weaponrack2','Weaponrack3'],
+        'weaponRack1': ['Weaponrack2','Weaponrack3'],
+        'weaponRack2': ['Weaponrack3'],
+        'weaponRack3': []
+    };
+
+    const workBenchToQuery = {
+        'workBenchNotInstalled': ['Workbench1','Workbench2','Workbench3'],
+        'workBench1': ['Workbench2','Workbench3'],
+        'workBench2': ['Workbench3'],
+        'workBench3': []
+    };
+    // Getting a list of all queries
     const facilitiesToQuery = [
-        ...(airFilteringToQuery[selectedAirFilteringUnit] || [])
+        ...(airFilteringToQuery[selectedAirFilteringUnit] || []),...(bitcoinFarmToQuery[selectedBitcoinFarm] || []), (boozeGeneratorToQuery[selectedBoozeGenerator]||[]),(defectiveWallToQuery[selectedDefectiveWall]||[]), (generatorToQuery[selectedGenerator]||[]), (gymToQuery[selectedGym]||[]), (hallOfFameToQuery[selectedHallOfFame]||[]),
+        (heatingToQuery[selectedHeating]||[]), (illuminationToQuery[selectedIllumination]||[]), (intelligenceCenterToQuery[selectedIntelligenceCenter] || []), (lavatoryToQuery[selectedLavatory]||[]), (libraryToQuery[selectedLibrary]||[]), (medstationToQuery[selectedMedstation]||[]),(nutritionUnitToQuery[selectedNutritionUnit]||[]), (restSpaceToQuery[selectedRestSpace]||[]), (scavCaseToQuery[selectedScavCase]||[]), (securityToQuery[selectedSecurity]||[]), (shootingRangeToQuery[selectedShootingRange]||[]), (solarPowerToQuery[selectedSolarPower]||[]), (stashToQuery[selectedStash]||[]), (ventsToQuery[selectedStash]||[]), (waterCollectorToQuery[selectedWaterCollector]||[]),(weaponRackToQuery[selectedWeaponRack]||[]), (workBenchToQuery[selectedWorkBench]||[])
     ];
     console.log('Facilities to query:', facilitiesToQuery);
 
@@ -771,7 +924,7 @@ async function query_hideout(selectedAirFilteringUnit) {
     if (Object.keys(combinedItems).length === 0) {
         let li = document.createElement('li');
         li.className = 'item';
-        li.textContent = 'No items found.';
+        li.textContent = 'No items required.';
         itemsUl.appendChild(li);
     }
 }
@@ -788,8 +941,56 @@ document.addEventListener("DOMContentLoaded", function() {
     // Listen for open click
     openModalBtn.addEventListener("click", function() {
         const selectedAirFilteringUnit = document.getElementById("airFilteringUnitID").value;
-        console.log('Selected', selectedAirFilteringUnit)
-        query_hideout(selectedAirFilteringUnit);
+        const selectedBitcoinFarm = document.getElementById("bitcoinFarmID").value;
+        const selectedBoozeGenerator = document.getElementById('boozeGeneratorID').value;
+        const selectedDefectiveWall = document.getElementById('defectiveWallID').value;
+        const selectedGenerator = document.getElementById('generatorID').value;
+        const selectedGym = document.getElementById('gymID').value;
+        const selectedHallOfFame = document.getElementById('hallOfFameID').value;
+        const selectedHeating = document.getElementById('heatingID').value;
+        const selectedIllumination = document.getElementById('illuminationID').value;
+        const selectedIntelligenceCenter = document.getElementById('intelligenceCenterID').value;
+        const selectedLavatory = document.getElementById('lavatoryID').value;
+        const selectedLibrary = document.getElementById('libraryID').value;
+        const selectedMedstation = document.getElementById('medstationID').value;
+        const selectedNutritionUnit = document.getElementById('nutritionUnitID').value;
+        const selectedRestSpace = document.getElementById('restSpaceID').value;
+        const selectedScavCase = document.getElementById('scavCaseID').value;
+        const selectedSecurity = document.getElementById('securityID').value;
+        const selectedShootingRange = document.getElementById('shootingRangeID').value;
+        const selectedSolarPower = document.getElementById('solarPowerID').value;
+        const selectedStash = document.getElementById('stashID').value;
+        const selectedVents = document.getElementById('ventsID').value;
+        const selectedWaterCollector = document.getElementById('waterCollectorID').value;
+        const selectedWeaponRack = document.getElementById('weaponRackID').value;
+        const selectedWorkBench = document.getElementById('workBenchID').value;
+        
+        console.log('Selected', selectedBitcoinFarm);
+        console.log('Selected', selectedAirFilteringUnit);
+        console.log('Selected', selectedBoozeGenerator);
+        console.log('Selected', selectedDefectiveWall);
+        console.log('Selected', selectedGenerator);
+        console.log('Selected', selectedGym);
+        console.log('Selected', selectedHallOfFame);
+        console.log('Selected', selectedHeating);
+        console.log('Selected', selectedIllumination);
+        console.log('Selected', selectedIntelligenceCenter);
+        console.log('Selected', selectedLavatory);
+        console.log('Selected', selectedLibrary);
+        console.log('Selected', selectedMedstation);
+        console.log('Selected', selectedNutritionUnit);
+        console.log('Selected', selectedRestSpace);
+        console.log('Selected', selectedScavCase);
+        console.log('Selected', selectedSecurity);
+        console.log('Selected', selectedShootingRange);
+        console.log('Selected', selectedSolarPower);
+        console.log('Selected', selectedStash);
+        console.log('Selected', selectedVents);
+        console.log('Selected', selectedWaterCollector);
+        console.log('Selected', selectedWeaponRack);
+        console.log('Selected', selectedWorkBench);
+
+        query_hideout(selectedAirFilteringUnit, selectedBitcoinFarm, selectedBoozeGenerator, selectedDefectiveWall, selectedGenerator, selectedGym, selectedHallOfFame, selectedHeating, selectedIllumination, selectedIntelligenceCenter, selectedLavatory, selectedMedstation, selectedNutritionUnit, selectedRestSpace, selectedScavCase, selectedSecurity, selectedShootingRange, selectedSolarPower, selectedStash, selectedVents, selectedWaterCollector, selectedWeaponRack, selectedWorkBench);
 
         modal.style.display = "block";
         
@@ -826,7 +1027,7 @@ write_RestSpace();
 write_ScavCase();
 write_Security();
 write_ShootingRange();
-write_SolarPower
+write_SolarPower();
 write_Stash();
 write_Vents();
 write_WaterCollecter()
