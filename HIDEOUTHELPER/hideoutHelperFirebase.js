@@ -722,22 +722,22 @@ async function write_WorkBench(){
         console.log('Failed to write workbench data');
     }
 }
-async function query_hideout(selectedAirFilteringUnit) {
+async function query_hideout(selectedAirFilteringUnit, selectedBitcoinFarm, selectedBoozeGenerator, selectedDefectiveWall, selectedGenerator, selectedGym, selectedHallOfFame, selectedHeating, selectedIllumination, selectedIntelligenceCenter, selectedLavatory, selectedLibrary, selectedMedstation, selectedNutritionUnit, selectedRestSpace, selectedScavCase, selectedSecurity, selectedShootingRange, selectedSolarPower, selectedStash, selectedVents, selectedWaterCollector, selectedWeaponRack, selectedWorkBench) {
     const airFilteringToQuery ={
         'airFilteringNotInstalled': ['AirFilteringUnit'],
-        'airFilteringInstalled': []
+        'airFilteringInstalled': ['']
     };
 
     const bitcoinFarmToQuery = {
         'bitcoinNotInstalled': ['BitcoinFarm1','BitcoinFarm2','BitcoinFarm3'],
         'bitcoinFarm1': ['BitcoinFarm2','BitcoinFarm3'],
-        'bitcoinFarm2': ['Bitcoinfarm3'],
-        'bitcoinFarm3': []
+        'bitcoinFarm2': ['BitcoinFarm3'],
+        'bitcoinFarm3': ['']
     };
     
     const boozeGeneratorToQuery ={
         'boozeGeneratorNotInstalled': ['BoozeGenerator'],
-        'boozeGeneratorInstalled':[]
+        'boozeGeneratorInstalled':['']
     }
 
     const defectiveWallToQuery ={
@@ -747,154 +747,161 @@ async function query_hideout(selectedAirFilteringUnit) {
         'defectiveWall3':['DefectiveWall4','DefectiveWall5','DefectiveWall6'],
         'defectiveWall4':['DefectiveWall5','DefectiveWall6'],
         'defectiveWall5':['DefectiveWall6'],
-        'defectiveWall6':[]
+        'defectiveWall6':['']
     };
     const generatorToQuery = {
         'generatorNotInstalled': ['Generator1','Generator2','Generator3'],
         'generator1': ['Generator2','Generator3'],
         'generator2': ['Generator3'],
-        'generator3': []
+        'generator3': ['']
     };
 
     const gymToQuery = {
         'gymNotInstalled': ['Gym'],
-        'gymOn': []
+        'gymOn': ['']
     };
 
     const hallOfFameToQuery = {
         'hallOfFameNotInstalled': ['HallofFame1','HallofFame2','HallofFame3'],
         'hallOfFame1': ['HallofFame2','HallofFame3'],
         'hallOfFame2': ['HallofFame3'],
-        'hallOfFame3': []
+        'hallOfFame3': ['']
     };
 
     const heatingToQuery ={
         'heatingNotInstalled': ['Heating1','Heating2','Heating3'],
         'heating1':['Heating2','Heating3'],
         'heating2':['Heating3'],
-        'heating3':[]
+        'heating3':['']
     };
 
     const illuminationToQuery ={
         'illuminationNotInstalled': ['Illumination1','Illumination2','Illumination3'],
         'illumination1': ['Illumination2','Illumination3'],
         'illumination2': ['Illumination3'],
-        'illumination3': []
+        'illumination3': ['']
     };
 
     const intelligenceCenterToQuery = {
         'intelligenceCenterNotInstalled': ['IntelligenceCenter1','IntelligenceCenter2','IntelligenceCenter3'],
         'intelligenceCenter1': ['IntelligenceCenter2','IntelligenceCenter3'],
         'intelligenceCenter2': ['IntelligenceCenter3'],
-        'intelligenceCenter3': []
+        'intelligenceCenter3': ['']
     };
 
     const lavatoryToQuery = {
         'lavatoryNotInstalled': ['Lavatory1','Lavatory2','Lavatory3'],
         'lavatory1': ['Lavatory2','Lavatory3'],
         'lavatory2': ['Lavatory3'],
-        'lavatory3': []
+        'lavatory3': ['']
     };
     
     const libraryToQuery ={
         'libraryNotInstalled': ['Library1'],
-        'libraryInstalled': []
+        'libraryInstalled': ['']
     };
 
     const medstationToQuery = {
         'medStationNotInstalled': ['Medstation1','Medstation2','Medstation3'],
         'medStation1': ['Medstation2','Medstation3'],
         'medStation2': ['Medstation3'],
-        'medStation3': []
+        'medStation3': ['']
     };
 
     const nutritionUnitToQuery = {
         'nutritionUnitNotInstalled': ['NutritionUnit1','NutritionUnit2','NutritionUnit3'],
         'nutritionUnit1': ['NutritionUnit2','NutritionUnit3'],
         'nutritionUnit2': ['NutritionUnit3'],
-        'nutritionUnit3': []
+        'nutritionUnit3': ['']
     };
 
     const restSpaceToQuery = {
         'restSpaceNotInstalled': ['Restspace1','Restspace2','Restspace3'],
         'restSpace1': ['Restspace2','Restspace3'],
         'restSpace2': ['Restspace3'],
-        'restSpace3': []
+        'restSpace3': ['']
     };
     
     const scavCaseToQuery ={
         'scavCaseNotInstalled': ['Scavcase'],
-        'scavCaseInstalled': []
+        'scavCaseInstalled': ['']
     };
 
     const securityToQuery = {
         'securityNotInstalled': ['Security1','Security2','Security3'],
         'security1': ['Security2','Security3'],
         'security2': ['Security3'],
-        'security3': []
+        'security3': ['']
     };
 
     const shootingRangeToQuery ={
         'shootingRangeNotInstalled': ['Shootingrange1','Shootingrange2','Shootingrange3'],
         'shootingRange1': ['Shootingrange2','Shootingrange3'],
         'shootingRange2': ['Shootingrange3'],
-        'shootingRange3': []
+        'shootingRange3': ['']
     };
 
     const solarPowerToQuery = {
         'solarPowerNotInstalled': ['Solarpower'],
-        'solarPowerInstalled': []
+        'solarPowerInstalled': ['']
     };
 
     const stashToQuery ={
         'stash1': ['Stash2','Stash3','Stash4'],
         'stash2': ['Stash3','Stash4'],
         'stash3': ['Stash4'],
-        'stash4': []
+        'stash4': ['']
     };
 
     const ventsToQuery ={
         'ventNotInstalled': ['Vents1','Vents2','Vents3'],
         'vents1': ['Vents2','Vents3'],
         'vents2': ['Vents3'],
-        'vents3': []
+        'vents3': ['']
     };
 
     const waterCollectorToQuery ={
         'waterCollectorNotInstalled': ['Watercollector1','Watercollector2','Watercollector3'],
         'waterCollector1': ['Watercollector2','Watercollector3'],
         'waterCollector2': ['Watercollector3'],
-        'waterCollector3': []
+        'waterCollector3': ['']
     };
 
     const weaponRackToQuery = {
         'weaponRackNotInstalled': ['Weaponrack1','Weaponrack2','Weaponrack3'],
         'weaponRack1': ['Weaponrack2','Weaponrack3'],
         'weaponRack2': ['Weaponrack3'],
-        'weaponRack3': []
+        'weaponRack3': ['']
     };
 
     const workBenchToQuery = {
         'workBenchNotInstalled': ['Workbench1','Workbench2','Workbench3'],
         'workBench1': ['Workbench2','Workbench3'],
         'workBench2': ['Workbench3'],
-        'workBench3': []
+        'workBench3': ['']
     };
     // Getting a list of all queries
     const facilitiesToQuery = [
-        ...(airFilteringToQuery[selectedAirFilteringUnit] || []),...(bitcoinFarmToQuery[selectedBitcoinFarm] || []), (boozeGeneratorToQuery[selectedBoozeGenerator]||[]),(defectiveWallToQuery[selectedDefectiveWall]||[]), (generatorToQuery[selectedGenerator]||[]), (gymToQuery[selectedGym]||[]), (hallOfFameToQuery[selectedHallOfFame]||[]),
-        (heatingToQuery[selectedHeating]||[]), (illuminationToQuery[selectedIllumination]||[]), (intelligenceCenterToQuery[selectedIntelligenceCenter] || []), (lavatoryToQuery[selectedLavatory]||[]), (libraryToQuery[selectedLibrary]||[]), (medstationToQuery[selectedMedstation]||[]),(nutritionUnitToQuery[selectedNutritionUnit]||[]), (restSpaceToQuery[selectedRestSpace]||[]), (scavCaseToQuery[selectedScavCase]||[]), (securityToQuery[selectedSecurity]||[]), (shootingRangeToQuery[selectedShootingRange]||[]), (solarPowerToQuery[selectedSolarPower]||[]), (stashToQuery[selectedStash]||[]), (ventsToQuery[selectedStash]||[]), (waterCollectorToQuery[selectedWaterCollector]||[]),(weaponRackToQuery[selectedWeaponRack]||[]), (workBenchToQuery[selectedWorkBench]||[])
-    ];
+        ...(airFilteringToQuery[selectedAirFilteringUnit] || []), ...(bitcoinFarmToQuery[selectedBitcoinFarm] || []), (boozeGeneratorToQuery[selectedBoozeGenerator] || []),(defectiveWallToQuery[selectedDefectiveWall] || []), (generatorToQuery[selectedGenerator] || []), (gymToQuery[selectedGym] || []), (hallOfFameToQuery[selectedHallOfFame] || []),
+        (heatingToQuery[selectedHeating] || []), (illuminationToQuery[selectedIllumination] || []), (intelligenceCenterToQuery[selectedIntelligenceCenter] || []), (lavatoryToQuery[selectedLavatory] || []), (libraryToQuery[selectedLibrary] || []), (medstationToQuery[selectedMedstation] || []),(nutritionUnitToQuery[selectedNutritionUnit] || []), (restSpaceToQuery[selectedRestSpace] || []), (scavCaseToQuery[selectedScavCase] || []), (securityToQuery[selectedSecurity] || []), (shootingRangeToQuery[selectedShootingRange] || []), (solarPowerToQuery[selectedSolarPower] || []), (stashToQuery[selectedStash] || []), (ventsToQuery[selectedVents] || []), (waterCollectorToQuery[selectedWaterCollector] || []),(weaponRackToQuery[selectedWeaponRack] || []), (workBenchToQuery[selectedWorkBench] || [])
+    ].filter(facility=> facility);
     console.log('Facilities to query:', facilitiesToQuery);
-
-    const results = await Promise.all(facilitiesToQuery.map(async (facility) => {
-        const docRef = doc(db, 'Collection', facility);
-        const docSnap = await getDoc(docRef);
-        
-        console.log(`Querying ${facility}:`, docSnap.exists() ? docSnap.data() : 'No document found'); // Log data or absence
-        
-        return docSnap.exists() ? docSnap.data() : null; // Return null if document doesn't exist
-    }));
+    
+    const results = await Promise.all(
+        facilitiesToQuery.flatMap(async (facilityArrayOrString) => {
+            // Check if the element is an array or a string
+            const facilities = Array.isArray(facilityArrayOrString) ? facilityArrayOrString : [facilityArrayOrString];
+    
+            return facilities.map(async (facility) => {
+                const docRef = doc(db, 'Collection', facility); // Pass each facility as a string
+                const docSnap = await getDoc(docRef);
+    
+                console.log(`Querying ${facility}:`, docSnap.exists() ? docSnap.data() : 'No document found');
+    
+                return docSnap.exists() ? docSnap.data() : null; // Return null if document doesn't exist
+            });
+        })
+    );
 
     // Process the results
     const combinedItems = {};
@@ -964,9 +971,9 @@ document.addEventListener("DOMContentLoaded", function() {
         const selectedWaterCollector = document.getElementById('waterCollectorID').value;
         const selectedWeaponRack = document.getElementById('weaponRackID').value;
         const selectedWorkBench = document.getElementById('workBenchID').value;
-        
-        console.log('Selected', selectedBitcoinFarm);
+    
         console.log('Selected', selectedAirFilteringUnit);
+        console.log('Selected', selectedBitcoinFarm);
         console.log('Selected', selectedBoozeGenerator);
         console.log('Selected', selectedDefectiveWall);
         console.log('Selected', selectedGenerator);
@@ -990,7 +997,7 @@ document.addEventListener("DOMContentLoaded", function() {
         console.log('Selected', selectedWeaponRack);
         console.log('Selected', selectedWorkBench);
 
-        query_hideout(selectedAirFilteringUnit, selectedBitcoinFarm, selectedBoozeGenerator, selectedDefectiveWall, selectedGenerator, selectedGym, selectedHallOfFame, selectedHeating, selectedIllumination, selectedIntelligenceCenter, selectedLavatory, selectedMedstation, selectedNutritionUnit, selectedRestSpace, selectedScavCase, selectedSecurity, selectedShootingRange, selectedSolarPower, selectedStash, selectedVents, selectedWaterCollector, selectedWeaponRack, selectedWorkBench);
+        query_hideout(selectedAirFilteringUnit, selectedBitcoinFarm, selectedBoozeGenerator, selectedDefectiveWall, selectedGenerator, selectedGym, selectedHallOfFame, selectedHeating, selectedIllumination, selectedIntelligenceCenter, selectedLavatory, selectedLibrary, selectedMedstation, selectedNutritionUnit, selectedRestSpace, selectedScavCase, selectedSecurity, selectedShootingRange, selectedSolarPower, selectedStash, selectedVents, selectedWaterCollector, selectedWeaponRack, selectedWorkBench);
 
         modal.style.display = "block";
         
