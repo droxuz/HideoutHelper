@@ -20,13 +20,15 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const db = getFirestore(app);
-
+//defining references for database
 const ref_air_filtering_unit = doc(db, 'Collection/AirFilteringUnit');
 const ref_booze_generator = doc(db,'Collection/BoozeGenerator');
 const ref_gym = doc(db,'Collection/Gym');
 const ref_library1 = doc(db,'Collection/Library1');
 const ref_scavcase = doc(db,'Collection/Scavcase');
 const ref_solarpower = doc(db,'Collection/Solarpower');
+
+//Functions to write data to database
 async function write_Heating(){
     const batch = writeBatch(db);
     const ref_heating1 = doc(db,'Collection/Heating1');
@@ -132,10 +134,10 @@ async function write_DefectiveWall() {
     const ref_defective_wall5 = doc(db,'Collection/DefectiveWall5');
     const ref_defective_wall6 = doc(db,'Collection/DefectiveWall6');
     batch.set(ref_defective_wall1,{
-        fleece: null
+        fleece: ''
     });
     batch.set(ref_defective_wall2,{
-        fleece:'1 '
+        fleece:'1'
     });
     batch.set(ref_defective_wall3,{
         fleece:'1'
@@ -388,7 +390,7 @@ async function write_Medstation(){
     });
     try{
         batch.commit(db);
-        console.log('Wrote Lavatory Data');
+        console.log('Wrote Medstation Data');
     }catch{
         console.log('Failed to write lavatory data');
     }
@@ -722,6 +724,7 @@ async function write_WorkBench(){
         console.log('Failed to write workbench data');
     }
 }
+//Querying the database to add to list
 async function query_hideout(selectedAirFilteringUnit, selectedBitcoinFarm, selectedBoozeGenerator, selectedDefectiveWall, selectedGenerator, selectedGym, selectedHallOfFame, selectedHeating, selectedIllumination, selectedIntelligenceCenter, selectedLavatory, selectedLibrary, selectedMedstation, selectedNutritionUnit, selectedRestSpace, selectedScavCase, selectedSecurity, selectedShootingRange, selectedSolarPower, selectedStash, selectedVents, selectedWaterCollector, selectedWeaponRack, selectedWorkBench) {
     const airFilteringToQuery ={
         'airFilteringNotInstalled': ['AirFilteringUnit'],
@@ -757,7 +760,7 @@ async function query_hideout(selectedAirFilteringUnit, selectedBitcoinFarm, sele
     };
 
     const gymToQuery = {
-        'gymNotInstalled': ['Gym'],
+    'gymNotInstalled': ['Gym'],
         'gymOn': ['']
     };
 
@@ -885,7 +888,7 @@ async function query_hideout(selectedAirFilteringUnit, selectedBitcoinFarm, sele
         ...(airFilteringToQuery[selectedAirFilteringUnit] || []), ...(bitcoinFarmToQuery[selectedBitcoinFarm] || []), (boozeGeneratorToQuery[selectedBoozeGenerator] || []),(defectiveWallToQuery[selectedDefectiveWall] || []), (generatorToQuery[selectedGenerator] || []), (gymToQuery[selectedGym] || []), (hallOfFameToQuery[selectedHallOfFame] || []),
         (heatingToQuery[selectedHeating] || []), (illuminationToQuery[selectedIllumination] || []), (intelligenceCenterToQuery[selectedIntelligenceCenter] || []), (lavatoryToQuery[selectedLavatory] || []), (libraryToQuery[selectedLibrary] || []), (medstationToQuery[selectedMedstation] || []),(nutritionUnitToQuery[selectedNutritionUnit] || []), (restSpaceToQuery[selectedRestSpace] || []), (scavCaseToQuery[selectedScavCase] || []), (securityToQuery[selectedSecurity] || []), (shootingRangeToQuery[selectedShootingRange] || []), (solarPowerToQuery[selectedSolarPower] || []), (stashToQuery[selectedStash] || []), (ventsToQuery[selectedVents] || []), (waterCollectorToQuery[selectedWaterCollector] || []),(weaponRackToQuery[selectedWeaponRack] || []), (workBenchToQuery[selectedWorkBench] || [])
     ].filter(facility=> facility);
-    console.log('Facilities to query:', facilitiesToQuery);
+    //console.log('Facilities to query:', facilitiesToQuery);
     
     const results = await Promise.all(
         facilitiesToQuery.flatMap(async (facilityArrayOrString) => {
@@ -896,7 +899,7 @@ async function query_hideout(selectedAirFilteringUnit, selectedBitcoinFarm, sele
                 const docRef = doc(db, 'Collection', facility); // Pass each facility as a string
                 const docSnap = await getDoc(docRef);
     
-                console.log(`Querying ${facility}:`, docSnap.exists() ? docSnap.data() : 'No document found');
+                    console.log(`Querying ${facility}:`, docSnap.exists() ? docSnap.data() : 'No document found');
     
                 return docSnap.exists() ? docSnap.data() : null; // Return null if document doesn't exist
             });
@@ -904,13 +907,14 @@ async function query_hideout(selectedAirFilteringUnit, selectedBitcoinFarm, sele
     );
 
     // Process the results
+    console.log(results);
     const combinedItems = {};
     results.forEach(facility => {
         if (facility) {
             for (let [item, count] of Object.entries(facility)) {
                 // Convert the string count to a number, if applicable
                 const numericCount = parseInt(count, 10) || 0; // Default to 0 if parsing fails
-                combinedItems[item] = (combinedItems[item] || 0) + numericCount;
+                combinedItems[item] = (combinedItems[item]||0) + numericCount;
             }
         }
     });
@@ -971,7 +975,8 @@ document.addEventListener("DOMContentLoaded", function() {
         const selectedWaterCollector = document.getElementById('waterCollectorID').value;
         const selectedWeaponRack = document.getElementById('weaponRackID').value;
         const selectedWorkBench = document.getElementById('workBenchID').value;
-    
+        
+        /*
         console.log('Selected', selectedAirFilteringUnit);
         console.log('Selected', selectedBitcoinFarm);
         console.log('Selected', selectedBoozeGenerator);
@@ -996,7 +1001,7 @@ document.addEventListener("DOMContentLoaded", function() {
         console.log('Selected', selectedWaterCollector);
         console.log('Selected', selectedWeaponRack);
         console.log('Selected', selectedWorkBench);
-
+        */
         query_hideout(selectedAirFilteringUnit, selectedBitcoinFarm, selectedBoozeGenerator, selectedDefectiveWall, selectedGenerator, selectedGym, selectedHallOfFame, selectedHeating, selectedIllumination, selectedIntelligenceCenter, selectedLavatory, selectedLibrary, selectedMedstation, selectedNutritionUnit, selectedRestSpace, selectedScavCase, selectedSecurity, selectedShootingRange, selectedSolarPower, selectedStash, selectedVents, selectedWaterCollector, selectedWeaponRack, selectedWorkBench);
 
         modal.style.display = "block";
