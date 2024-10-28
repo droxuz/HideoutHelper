@@ -744,7 +744,7 @@ async function query_hideout(selectedAirFilteringUnit, selectedBitcoinFarm, sele
     }
 
     const defectiveWallToQuery ={
-        'defectiveWallNotInstalled': ['DefectiveWall1','DefectiveWall2','DefectiveWall3','DefectiveWall4','DefectiveWall5','DefectiveWall6'],
+        'defectiveWallNotInstalled': ['DefectiveWall2','DefectiveWall3','DefectiveWall4','DefectiveWall5','DefectiveWall6'],
         'defectiveWall1':['DefectiveWall2','DefectiveWall3','DefectiveWall4','DefectiveWall5','DefectiveWall6'],
         'defectiveWall2':['DefectiveWall3','DefectiveWall4','DefectiveWall5','DefectiveWall6'],
         'defectiveWall3':['DefectiveWall4','DefectiveWall5','DefectiveWall6'],
@@ -885,37 +885,40 @@ async function query_hideout(selectedAirFilteringUnit, selectedBitcoinFarm, sele
     };
     // Getting a list of all queries
     const facilitiesToQuery = [
-        ...(airFilteringToQuery[selectedAirFilteringUnit] || []), ...(bitcoinFarmToQuery[selectedBitcoinFarm] || []), (boozeGeneratorToQuery[selectedBoozeGenerator] || []),(defectiveWallToQuery[selectedDefectiveWall] || []), (generatorToQuery[selectedGenerator] || []), (gymToQuery[selectedGym] || []), (hallOfFameToQuery[selectedHallOfFame] || []),
+        ...(airFilteringToQuery[selectedAirFilteringUnit] || []), (bitcoinFarmToQuery[selectedBitcoinFarm] || []), (boozeGeneratorToQuery[selectedBoozeGenerator] || []),(defectiveWallToQuery[selectedDefectiveWall] || []), (generatorToQuery[selectedGenerator] || []), (gymToQuery[selectedGym] || []), (hallOfFameToQuery[selectedHallOfFame] || []),
         (heatingToQuery[selectedHeating] || []), (illuminationToQuery[selectedIllumination] || []), (intelligenceCenterToQuery[selectedIntelligenceCenter] || []), (lavatoryToQuery[selectedLavatory] || []), (libraryToQuery[selectedLibrary] || []), (medstationToQuery[selectedMedstation] || []),(nutritionUnitToQuery[selectedNutritionUnit] || []), (restSpaceToQuery[selectedRestSpace] || []), (scavCaseToQuery[selectedScavCase] || []), (securityToQuery[selectedSecurity] || []), (shootingRangeToQuery[selectedShootingRange] || []), (solarPowerToQuery[selectedSolarPower] || []), (stashToQuery[selectedStash] || []), (ventsToQuery[selectedVents] || []), (waterCollectorToQuery[selectedWaterCollector] || []),(weaponRackToQuery[selectedWeaponRack] || []), (workBenchToQuery[selectedWorkBench] || [])
     ].filter(facility=> facility);
     //console.log('Facilities to query:', facilitiesToQuery);
     
-    const results = await Promise.all(
+    const results = (await Promise.all(
         facilitiesToQuery.flatMap(async (facilityArrayOrString) => {
-            // Check if the element is an array or a string
             const facilities = Array.isArray(facilityArrayOrString) ? facilityArrayOrString : [facilityArrayOrString];
     
-            return facilities.map(async (facility) => {
-                const docRef = doc(db, 'Collection', facility); // Pass each facility as a string
+            // Use `map()` to return an array of promises, and await each `getDoc`
+            const facilityPromises = facilities.map(async (facility) => {
+                const docRef = doc(db, 'Collection', facility);
                 const docSnap = await getDoc(docRef);
     
-                    console.log(`Querying ${facility}:`, docSnap.exists() ? docSnap.data() : 'No document found');
-    
-                return docSnap.exists() ? docSnap.data() : null; // Return null if document doesn't exist
+                console.log(`Querying ${facility}:`, docSnap.exists() ? docSnap.data() : 'No document found');
+                return docSnap.exists() ? docSnap.data() : null;
             });
+    
+            // Await all facility promises and return the results
+            return Promise.all(facilityPromises);
         })
-    );
+    )).flat(); // Fully flatten the results array
 
     // Process the results
-    console.log(results);
     const combinedItems = {};
+    console.log('better not be nothing', results);
     results.forEach(facility => {
-        if (facility) {
-            for (let [item, count] of Object.entries(facility)) {
-                // Convert the string count to a number, if applicable
-                const numericCount = parseInt(count, 10) || 0; // Default to 0 if parsing fails
-                combinedItems[item] = (combinedItems[item]||0) + numericCount;
-            }
+        if (facility && typeof facility === 'object') {
+            Object.entries(facility).forEach(([item, count]) => {
+                const numericCount = parseInt(count, 10) || 0;
+                if (numericCount > 0) {
+                    combinedItems[item] = (combinedItems[item] || 0) + numericCount;
+                }
+            });
         }
     });
 
@@ -924,16 +927,17 @@ async function query_hideout(selectedAirFilteringUnit, selectedBitcoinFarm, sele
     // Update the modal with the summed items
     const itemsUl = document.getElementById("itemUl");
     itemsUl.innerHTML = ''; // Clear previous items
-    for (let [item, count] of Object.entries(combinedItems)) {
-        let li = document.createElement('li');
+
+    Object.entries(combinedItems).forEach(([item, count]) => {
+        const li = document.createElement('li');
         li.className = 'item';
         li.textContent = `${item}: ${count}`;
         itemsUl.appendChild(li);
-    }
+    });
 
-    // If no items were found, add a message
+    // If no items were found, display "No items required"
     if (Object.keys(combinedItems).length === 0) {
-        let li = document.createElement('li');
+        const li = document.createElement('li');
         li.className = 'item';
         li.textContent = 'No items required.';
         itemsUl.appendChild(li);
