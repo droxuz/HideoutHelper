@@ -2,20 +2,23 @@
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-analytics.js";
+import "dotenv/config";
+require('dotenv').config();
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 import {getFirestore, doc, setDoc, writeBatch, getDoc} from 'https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js';
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional\
 const firebaseConfig = {
-    apiKey: "AIzaSyDL7AlOqEol3u1LHmn7RS4i7fduyy2lmGI",
-    authDomain: "hideouthelper-7c1a6.firebaseapp.com",
-    projectId: "hideouthelper-7c1a6",
-    storageBucket: "hideouthelper-7c1a6.appspot.com",
-    messagingSenderId: "1011025758280",
-    appId: "1:1011025758280:web:4ecc9b03da3dc2f81b707d",
-    measurementId: "G-LV7BW8NQLQ"
-  }; 
+    apiKey: process.env.API_KEY,
+    authDomain: process.env.AUTH_DOMAIN,
+    projectId: process.env.PROJECT_ID,
+    storageBucket: process.env.STORAGE_BUCKET,
+    messagingSenderId: process.env.MESSAGING_SENDER_ID,
+    appId: process.env.APP_ID,
+    measurementId: process.env.MEASUREMENT_ID
+}
 
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
@@ -100,7 +103,7 @@ async function write_BitcoinFarm(){
         six_sten_140_m_military_battery: '1'
     });
     try{
-        batch.commit(db);
+        await batch.commit(db);
         console.log('Wrote bitcoin farm data');
     }catch{
         console.log('Failed to write bitcoin data');
@@ -163,7 +166,7 @@ async function write_DefectiveWall() {
     });
 
     try{
-        batch.commit(db);
+        await batch.commit(db);
         console.log('Wrote defective wall data');
     }catch{
         console.log('Failed to write defective wall data');
@@ -192,7 +195,7 @@ async function write_Generator(){
         metal_spare_part: '7'
     });
     try{
-        batch.commit(db);
+        await batch.commit(db);
         console.log('Wrote Generator Data');
     }catch{
         console.log('Failed to write Generator Data');
@@ -251,7 +254,7 @@ async function write_HallOfFame(){
         power_cord: '5'
     });
     try{
-        batch.commit(db);
+        await batch.commit(db);
         console.log('Wrote Hall of Fame data');
     }catch{
         console.log('Failed to write Hall of Fame data');
@@ -277,7 +280,7 @@ async function write_Illumination(){
         bundle_of_wires: '6'
     });
     try{
-        batch.commit(db);
+        await batch.commit(db);
         console.log('Wrote Illumination data');
     }catch{
         console.log('Failed to write Illumination data');
@@ -308,7 +311,7 @@ async function write_IntelligenceCenter(){
         secure_magnetic_tape_cassette: '2'
     });
     try{
-        batch.commit(db);
+        await batch.commit(db);
         console.log('Wrote Intelligence Center data');
     }catch{
         console.log('Failed to write Intelligence Center');
@@ -340,7 +343,7 @@ async function write_Lavatory(){
         toolset:'1'
     });
     try{
-        batch.commit(db);
+        await batch.commit(db);
         console.log('Wrote Lavatory Data');
     }catch{
         console.log('Failed to write Lavatory data');
@@ -389,7 +392,7 @@ async function write_Medstation(){
         ledx_skin_transilluminator: '1'
     });
     try{
-        batch.commit(db);
+        await batch.commit(db);
         console.log('Wrote Medstation Data');
     }catch{
         console.log('Failed to write lavatory data');
@@ -616,7 +619,7 @@ async function write_Vents(){
         car_battery:'4'
     });
     try{
-        batch.commit(db);
+        await batch.commit(db);
         console.log('Wrote vents data');
     }catch{
         console.log('Failed to write vents data');
