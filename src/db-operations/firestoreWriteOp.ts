@@ -8,7 +8,7 @@ type FacilityRequirement = {
 
 type FacilityLevelData = {
     items: Record<string,number>,
-    level: FacilityRequirement[];
+    requirements: FacilityRequirement[];
 }
 
 type FacilityData = {
