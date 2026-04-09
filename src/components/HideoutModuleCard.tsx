@@ -23,12 +23,14 @@ type FacilityDocument = {
 
 type HideoutModuleCardProps = {
   facility: FacilityDocument;
+  imageSrc?: string;
   selectedLevel: number;
   onLevelChange: (facilityId: string, level: number) => void;
 };
 
 function HideoutModuleCard({
   facility,
+  imageSrc,
   selectedLevel,
   onLevelChange,
 }: HideoutModuleCardProps) {
@@ -42,6 +44,16 @@ function HideoutModuleCard({
 
   return (
     <div className="hideoutModuleCard">
+      {imageSrc ? (
+        <img
+          src={imageSrc}
+          alt={facility.id}
+          className="hideoutModuleImage"
+        />
+      ) : (
+        <div className="hideoutModuleImagePlaceholder">No Image</div>
+      )}
+
       <h3>{facility.id}</h3>
 
       <label htmlFor={facility.id}>Current Level</label>

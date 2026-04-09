@@ -1,77 +1,75 @@
-import { useState, useEffect } from 'react'
-import './App.css'
+import { useState, useEffect } from "react";
+import "./App.css";
 import { getAllFacilities } from "./db-operations/firestoreReadOp";
-import { writeAllHideoutData } from './db-operations/firestoreWriteOp';
-import { calculateRemainingItems } from './services/calculateRemainingItems.ts';
-import HideoutModuleCard from "./components/HideoutModuleCard.tsx";
-
+import { calculateRemainingItems } from "./services/calculateRemainingItems";
+import HideoutModuleCard from "./components/HideoutModuleCard";
 
 type FacilityRequirement = {
-    facility: string,
-    level: number;
-}
+  facility: string;
+  level: number;
+};
 
 type FacilityLevelData = {
-    items: Record<string,number>,
-    requirements: FacilityRequirement[];
-}
+  items: Record<string, number>;
+  requirements: FacilityRequirement[];
+};
 
 type FacilityData = {
-    level1?:FacilityLevelData;
-    level2?:FacilityLevelData;
-    level3?:FacilityLevelData;
-    level4?:FacilityLevelData;
-    level5?:FacilityLevelData;
-    level6?:FacilityLevelData;
-}
+  level1?: FacilityLevelData;
+  level2?: FacilityLevelData;
+  level3?: FacilityLevelData;
+  level4?: FacilityLevelData;
+  level5?: FacilityLevelData;
+  level6?: FacilityLevelData;
+};
 
 type FacilityDocument = {
-    id: string;
+  id: string;
 } & FacilityData;
 
 type CurrentLevels = Record<string, number>;
+type ImageModule = { default: string };
 
 function App() {
-  type ImageModule = { default: string };
-  const images = import.meta.glob<ImageModule>('./assets/photos/*.webp', { eager: true });
-  const imageList = Object.values(images).map((img) => img.default);
+  const images = import.meta.glob<ImageModule>("./assets/photos/*.webp", {
+    eager: true,
+  });
+
+  const imageMap: Record<string, string> = Object.fromEntries(
+    Object.entries(images).map(([path, mod]) => {
+      const fileName = path.split("/").pop()?.replace(".webp", "") ?? "";
+      return [fileName, mod.default];
+    })
+  );
+
   const [facilities, setFacilities] = useState<FacilityDocument[]>([]);
-  const [currentLevels, setCurrentLevels] = useState<Record<string, number>>({});
-  const [remainingItems, setRemainingItems] = useState<Record<string, number>>({});
-  const [isloading, isSetLoading] = useState(true);
+  const [currentLevels, setCurrentLevels] = useState<CurrentLevels>({});
+  const [remainingItems, setRemainingItems] = useState<Record<string, number>>(
+    {}
+  );
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    async function fetchData(){
-      try{
-        //Fetches data
-        isSetLoading(true);
+    async function fetchData() {
+      try {
+        setIsLoading(true);
         const data = await getAllFacilities();
         setFacilities(data);
-        const initialLevels: CurrentLevels = {};
 
-        //Sets all facility levels to 0
-        for (const facility of data){
+        const initialLevels: CurrentLevels = {};
+        for (const facility of data) {
           initialLevels[facility.id] = 0;
         }
         setCurrentLevels(initialLevels);
-      }catch(error){
+      } catch (error) {
         console.log("STATUS: 500", error);
-      }finally{
-        isSetLoading(false);
+      } finally {
+        setIsLoading(false);
       }
     }
 
-    async function writeData(){
-      try{
-        await writeAllHideoutData();
-      }catch(error){
-        console.log(error);
-      }
-    }
-    writeData();
     fetchData();
   }, []);
-
 
   function handleLevelChange(facilityId: string, level: number) {
     setCurrentLevels((prev) => ({
@@ -80,10 +78,11 @@ function App() {
     }));
   }
 
-  function handleCalculation(){
+  function handleCalculation() {
     const totals = calculateRemainingItems(facilities, currentLevels);
     setRemainingItems(totals);
   }
+
   return (
     <div className="appShell">
       <div className="headerSection">
@@ -96,7 +95,7 @@ function App() {
         </h4>
       </div>
 
-      {isloading ? (
+      {isLoading ? (
         <p>Loading hideout data...</p>
       ) : (
         <>
@@ -105,6 +104,7 @@ function App() {
               <HideoutModuleCard
                 key={facility.id}
                 facility={facility}
+                imageSrc={imageMap[facility.id]}
                 selectedLevel={currentLevels[facility.id] ?? 0}
                 onLevelChange={handleLevelChange}
               />
@@ -135,7 +135,7 @@ function App() {
         </>
       )}
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
