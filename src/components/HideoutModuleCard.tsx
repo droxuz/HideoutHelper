@@ -42,35 +42,41 @@ function HideoutModuleCard({
   const maxLevel =
     availableLevels.length > 0 ? availableLevels[availableLevels.length - 1] : 0;
 
+  function decrementLevel() {
+    onLevelChange(facility.id, Math.max(0, selectedLevel - 1));
+  }
+
+  function incrementLevel() {
+    onLevelChange(facility.id, Math.min(maxLevel, selectedLevel + 1));
+  }
+
   return (
     <div className="hideoutModuleCard">
       {imageSrc ? (
-        <img
-          src={imageSrc}
-          alt={facility.id}
-          className="hideoutModuleImage"
-        />
+        <div className="imageWrapper">
+          <img src={imageSrc} alt={facility.id} className="hideoutModuleImage" />
+        </div>
       ) : (
         <div className="hideoutModuleImagePlaceholder">No Image</div>
       )}
 
       <h3>{facility.id}</h3>
 
-      <label htmlFor={facility.id}>Current Level</label>
-      <select
-        id={facility.id}
-        value={selectedLevel}
-        onChange={(e) => onLevelChange(facility.id, Number(e.target.value))}
-      >
-        <option value={0}>Not Built</option>
-        {Array.from({ length: maxLevel }, (_, index) => index + 1).map(
-          (level) => (
-            <option key={level} value={level}>
-              Level {level}
-            </option>
-          )
-        )}
-      </select>
+      <p className="levelLabel">Current Level</p>
+
+      <div className="levelControl">
+        <button type="button" onClick={decrementLevel} disabled={selectedLevel === 0} className="levelButton negative">
+          -
+        </button>
+
+        <span className="levelValue">
+          {selectedLevel === 0 ? "Not Built" : `Level ${selectedLevel}`}
+        </span>
+
+        <button type="button" onClick={incrementLevel} disabled={selectedLevel === maxLevel} className="levelButton positive">
+          +
+        </button>
+      </div>
 
       <p>Max Level: {maxLevel}</p>
     </div>

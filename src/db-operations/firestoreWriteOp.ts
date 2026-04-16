@@ -93,7 +93,21 @@ export const hideoutData = {
             ],
         },
     },
-
+    CultistCircle:{
+        level1: {
+            items:{
+                PAIDAntiRoachSpray: 1,
+                LightBulb: 5,
+                CanOfWhiteSalt: 3,
+                SurvLSurvivorLighter: 1,
+                ConstructionMeasuringTape: 1,
+                WIFICamera: 1,
+            },
+            requirements:[
+                {facility: 'Security', level: 1},
+            ]
+        },
+    },
     Generator: {
         level1: {
             items: {
@@ -654,6 +668,167 @@ export const hideoutData = {
                 TechManual: 1,
             },
             requirements: [],
+        },
+    },
+
+    GearRack: {
+        level1: {
+            items: {
+                Roubles: 300000,
+                ElectricDrill: 1,
+                SewingKit: 1,
+                Awl: 1,
+                LeathermanMultitool: 1,
+                Bolts: 15,
+                FleeceFabric: 10,
+                EnergySavingLamp: 8,
+            },
+            requirements: [
+                { facility: "DefectiveWall", level: 6 },
+                { facility: "Illumination", level: 2 },
+            ],
+        },
+        level2: {
+            items: {
+                Roubles: 800000,
+                ElectricDrill: 1,
+                DuctTape: 5,
+                ShustriloSealingFoam: 5,
+                PackOfNails: 8,
+                EnergySavingLamp: 12,
+                AramidFiberFabric: 10,
+                Wrench: 1,
+            },
+            requirements: [
+                { facility: "HallOfFame", level: 1 },
+            ],
+        },
+        level3: {
+            items: {
+                Roubles: 1200000,
+                BodyArmorRepairKit: 1,
+                CorduraPolyamideFabric: 10,
+                MetalSpareParts: 15,
+                KEKTape: 10,
+                EnergySavingLamp: 15,
+                SetOfFilesMaster: 1,
+                RatchetWrench: 1,
+            },
+            requirements: [
+                { facility: "HallOfFame", level: 2 },
+            ],
+        },
+    },
+
+    HallOfFame: {
+        level1: {
+            items: {
+                InsulatingTape: 5,
+                PackOfNails: 5,
+                LightBulb: 5,
+                CatFigurine: 1,
+                FleeceFabric: 5,
+                RoundPliers: 1,
+            },
+            requirements: [],
+        },
+        level2: {
+            items: {
+                TechManual: 1,
+                PliersElite: 1,
+                Toolset: 1,
+                GoldenRooster: 1,
+                EnergySavingLamp: 10,
+                PackOfScrews: 6,
+                DuctTape: 3,
+                XenomorphSealingFoam: 5,
+                PoxeramColdWelding: 2,
+            },
+            requirements: [],
+        },
+        level3: {
+            items: {
+                SetOfFilesMaster: 1,
+                ElectricDrill: 1,
+                BronzeLion: 1,
+                EnergySavingLamp: 15,
+                KEKTape: 3,
+                TShapedPlug: 6,
+                MetalSpareParts: 15,
+                PowerCord: 5,
+            },
+            requirements: [],
+        },
+    },
+
+    Library: {
+        level1: {
+            items: {
+                Roubles: 400000,
+                BakeEzyCookBook: 1,
+                SlimDiary: 5,
+                Diary: 5,
+                TechManual: 8,
+                Chainlet: 2,
+                HorseFigurine: 1,
+            },
+            requirements: [
+                { facility: "RestSpace", level: 3 },
+            ],
+        },
+    },
+
+    Medstation: {
+        level1: {
+            items: {
+                Roubles: 50000,
+                DisposableSyringe: 1,
+                PileOfMeds: 1,
+                AsepticBandage: 2,
+                OLOLOMultivitamins: 1,
+            },
+            requirements: [],
+        },
+        level2: {
+            items: {
+                Roubles: 150000,
+                BottleOfSalineSolution: 6,
+                MedicalTools: 3,
+                MedicalBloodset: 2,
+                EsmarchTourniquet: 10,
+            },
+            requirements: [
+                { facility: "Generator", level: 1 },
+            ],
+        },
+        level3: {
+            items: {
+                Roubles: 500000,
+                Ophthalmoscope: 1,
+                BottleOfSalineSolution: 10,
+                LEDXSkinTransilluminator: 1,
+            },
+            requirements: [
+                { facility: "Generator", level: 2 },
+                { facility: "Lavatory", level: 2 },
+            ],
+        },
+    },
+
+    SolarPower: {
+        level1: {
+            items: {
+                Euros: 25000,
+                PhasedArrayElement: 6,
+                AdvancedCurrentConverter: 1,
+                WorkingLCD: 3,
+                MilitaryCable: 10,
+                MilitaryPowerFilter: 10,
+            },
+            requirements: [
+                { facility: "Generator", level: 3 },
+                { facility: "Workbench", level: 3 },
+            ],
         },
     },
 

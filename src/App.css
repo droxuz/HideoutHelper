@@ -32,10 +32,83 @@
   border-radius: 8px;
 }
 
+.hideoutModuleImage {
+  width: 100%;
+  height: 25px;        
+  object-fit: contain;  
+  object-position: center;
+  display: block;
+} 
+
 .actionsSection {
   margin-bottom: 24px;
 }
 
 .resultsSection ul {
   padding-left: 20px;
+}
+
+.levelControl {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin: 12px 0;
+}
+
+.levelValue {
+  min-width: 70px;
+  text-align: center;
+  font-weight: 600;
+}
+
+
+.levelButton {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+
+.levelButton.negative {
+  background: #7f1d1d; 
+  color: #fff;
+  border-color: rgba(239, 68, 68, 0.4);
+}
+
+.levelButton.negative:hover:not(:disabled) {
+  background: #b91c1c;
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(239, 68, 68, 0.6);
+}
+
+
+.levelButton.positive {
+  background: #14532d; 
+  color: #fff;
+  border-color: rgba(34, 197, 94, 0.4);
+}
+
+.levelButton.positive:hover:not(:disabled) {
+  background: #16a34a;
+  transform: scale(1.02);
+  box-shadow: 0 0 10px rgba(34, 197, 94, 0.6);
+}
+
+.levelButton:active:not(:disabled) {
+  transform: scale(0.95);
+}
+
+.levelButton:disabled {
+  opacity: 0.5;
+  background: #333;
+  color: #777;
+  cursor: not-allowed;
+  transform: none;
+  border: none;
 }

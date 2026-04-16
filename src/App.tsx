@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import "./App.css";
 import { getAllFacilities } from "./db-operations/firestoreReadOp";
 import { calculateRemainingItems } from "./services/calculateRemainingItems";
+import { writeAllHideoutData } from "./db-operations/firestoreWriteOp";
 import HideoutModuleCard from "./components/HideoutModuleCard";
 
 type FacilityRequirement = {
@@ -67,7 +68,14 @@ function App() {
         setIsLoading(false);
       }
     }
-
+    async function writeData() {
+      try {
+        writeAllHideoutData();
+      }catch(error){
+        console.log("Error", error);
+      }
+    }
+    //writeData();
     fetchData();
   }, []);
 
@@ -119,7 +127,7 @@ function App() {
             <h2>Remaining Items</h2>
 
             {Object.keys(remainingItems).length === 0 ? (
-              <p>No calculation yet.</p>
+              <p>Empty</p>
             ) : (
               <ul>
                 {Object.entries(remainingItems)
