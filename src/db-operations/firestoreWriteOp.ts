@@ -108,6 +108,56 @@ export const hideoutData = {
             ]
         },
     },
+    DefectiveWall: {
+        level1: {
+            items: {},
+            requirements: [
+                { facility: "Medstation", level: 1 },
+                { facility: "WaterCollector", level: 1 },
+            ],
+        },
+
+        // LEVEL 2 → optional → IGNORE ITEMS
+        level2: {
+            items: {},
+            requirements: [],
+        },
+
+        // LEVEL 3 → optional → IGNORE ITEMS
+        level3: {
+            items: {},
+            requirements: [],
+        },
+
+        level4: {
+            items: {
+                FierceBlowSledgehammer: 1,
+            },
+            requirements: [],
+        },
+
+        level5: {
+            items: {
+                MetalCuttingScissors: 1,
+                Toolset: 1,
+            },
+            requirements: [],
+        },
+
+        level6: {
+            items: {
+                CorrugatedHose: 2,
+                DuctTape: 1,
+                Toolset: 1,
+                PliersElite: 1,
+                MetalSpareParts: 5,
+                XenomorphSealingFoam: 1,
+                BundleOfWires: 2,
+                LightBulb: 2,
+            },
+            requirements: [],
+        },
+    },
     Generator: {
         level1: {
             items: {

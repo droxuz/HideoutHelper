@@ -91,6 +91,12 @@ function App() {
     setRemainingItems(totals);
   }
 
+  function formatFacilityName(name: string): string {
+    return name
+      .replace(/([A-Z]+)([A-Z][a-z])/g, "$1 $2")
+      .replace(/([a-z])([A-Z])/g, "$1 $2");
+  }
+
   return (
     <div className="appShell">
       <div className="headerSection">
@@ -120,26 +126,39 @@ function App() {
           </div>
 
           <div className="actionsSection">
-            <button onClick={handleCalculation}>Calculate Remaining Items</button>
+            <button className="actionButton" onClick={handleCalculation}>Calculate Remaining Items</button>
           </div>
 
           <div className="resultsSection">
-            <h2>Remaining Items</h2>
+              <div className="resultsHeader">
+                <div>
+                  <h2>Remaining Items</h2>
+                  <p className="resultsSubtext">
+                    {Object.keys(remainingItems).length} item types remaining
+                  </p>
+                </div>
+              </div>
 
-            {Object.keys(remainingItems).length === 0 ? (
-              <p>Empty</p>
-            ) : (
-              <ul>
-                {Object.entries(remainingItems)
-                  .sort((a, b) => b[1] - a[1])
-                  .map(([itemName, quantity]) => (
-                    <li key={itemName}>
-                      {itemName}: {quantity}
-                    </li>
-                  ))}
-              </ul>
-            )}
-          </div>
+              {Object.keys(remainingItems).length === 0 ? (
+                <div className="emptyState">
+                  <p>No remaining items yet.</p>
+                  <span>Select your hideout levels and calculate.</span>
+                </div>
+              ) : (
+                <div className="resultsGrid">
+                  {Object.entries(remainingItems)
+                    .sort((a, b) => b[1] - a[1])
+                    .map(([itemName, quantity]) => (
+                      <div className="resultItemCard" key={itemName}>
+                        <span className="resultItemName">
+                          {formatFacilityName(itemName)}
+                        </span>
+                        <span className="resultItemQty">{quantity}</span>
+                      </div>
+                    ))}
+                </div>
+              )}
+            </div>
         </>
       )}
     </div>

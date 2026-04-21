@@ -49,6 +49,9 @@ function HideoutModuleCard({
   function incrementLevel() {
     onLevelChange(facility.id, Math.min(maxLevel, selectedLevel + 1));
   }
+  function formatFacilityName(name: string): string {
+    return name.replace(/([A-Z]+)([A-Z][a-z])/g, "$1 $2").replace(/([a-z])([A-Z])/g, "$1 $2");
+  }
 
   return (
     <div className="hideoutModuleCard">
@@ -60,7 +63,7 @@ function HideoutModuleCard({
         <div className="hideoutModuleImagePlaceholder">No Image</div>
       )}
 
-      <h3>{facility.id}</h3>
+      <h3>{formatFacilityName(facility.id)}</h3>
 
       <p className="levelLabel">Current Level</p>
 
