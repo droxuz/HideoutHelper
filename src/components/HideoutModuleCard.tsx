@@ -63,7 +63,7 @@ function HideoutModuleCard({
         <div className="hideoutModuleImagePlaceholder">No Image</div>
       )}
 
-      <h3>{formatFacilityName(facility.id)}</h3>
+      <h3 className="hideoutModuleTitle">{formatFacilityName(facility.id)}</h3>
 
       <p className="levelLabel">Current Level</p>
 

@@ -13,11 +13,14 @@
   margin-bottom: 24px;
 }
 
+.hideoutModuleTitle{
+  color: #f3f4f6;
+}
 .hideoutModuleCard {
   border: 1px solid #444;
   border-radius: 12px;
   padding: 16px;
-  background: #111;
+  background: linear-gradient(180deg, #161616 0%, #101010 100%);
 }
 
 .hideoutModuleCard h3 {
