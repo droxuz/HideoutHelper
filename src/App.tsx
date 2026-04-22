@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import "./App.css";
 import { getAllFacilities } from "./db-operations/firestoreReadOp";
 import { calculateRemainingItems } from "./services/calculateRemainingItems";
-import { writeAllHideoutData } from "./db-operations/firestoreWriteOp";
 import HideoutModuleCard from "./components/HideoutModuleCard";
 
 type FacilityRequirement = {
@@ -68,14 +67,6 @@ function App() {
         setIsLoading(false);
       }
     }
-    async function writeData() {
-      try {
-        writeAllHideoutData();
-      }catch(error){
-        console.log("Error", error);
-      }
-    }
-    //writeData();
     fetchData();
   }, []);
 

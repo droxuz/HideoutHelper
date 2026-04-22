@@ -1,24 +1,5 @@
-import { getDocs, doc, writeBatch} from "firebase/firestore";
+import { doc, writeBatch} from "firebase/firestore";
 import { db } from '../lib/firebase';
-
-type FacilityRequirement = {
-    facility: string,
-    level: number;
-}
-
-type FacilityLevelData = {
-    items: Record<string,number>,
-    requirements: FacilityRequirement[];
-}
-
-type FacilityData = {
-    level1?:FacilityLevelData;
-    level2?:FacilityLevelData;
-    level3?:FacilityLevelData;
-    level4?:FacilityLevelData;
-    level5?:FacilityLevelData;
-    level6?:FacilityLevelData;
-}
 
 export const hideoutData = {
     AirFilteringUnit: {
