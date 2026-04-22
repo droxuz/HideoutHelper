@@ -1,5 +1,7 @@
 .appShell {
   padding: 24px;
+  min-height: 100vh;
+  background: #16171d;
 }
 
 .headerSection {
